@@ -43,7 +43,8 @@ defmodule Reddex.Mixfile do
       {:cowboy, "~> 1.0"},
       {:distillery, "~> 1.0"},
       {:credo, "~> 0.9.0-rc1", only: [:dev, :test], runtime: false},
-      {:dialyxir, "~> 0.5", only: [:dev], runtime: false}
+      {:dialyxir, "~> 0.5", only: [:dev], runtime: false},
+      {:wallaby, "~> 0.19.2", [runtime: false, only: :test]}
     ]
   end
 
