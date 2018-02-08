@@ -58,7 +58,18 @@ config :logger, level: :info
 #
 #     config :reddex, ReddexWeb.Endpoint, server: true
 #
+config :reddex, ReddexWeb.Endpoint,
+  load_from_system_env: true,
+  url: [host: "example.com", port: 80],
+  cache_static_manifest: "priv/static/cache_manifest.json"
 
-# Finally import the config/prod.secret.exs
-# which should be versioned separately.
-import_config "prod.secret.exs"
+config :reddex, ReddexWeb.Endpoint,
+  server: true,
+  secret_key_base: "${SECRET_KEY_BASE}"
+
+config :reddex, Reddex.Repo,
+  adapter: Ecto.Adapters.Postgres,
+  url: "${DATABASE_URL}",
+  database: "",
+  ssl: true,
+  pool_size: 1
