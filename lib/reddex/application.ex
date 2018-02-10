@@ -12,7 +12,7 @@ defmodule Reddex.Application do
       # Start the Ecto repository
       supervisor(Reddex.Repo, []),
       # Start the endpoint when the application starts
-      supervisor(ReddexWeb.Endpoint, []),
+      supervisor(ReddexWeb.Endpoint, [])
       # Start your own worker by calling: Reddex.Worker.start_link(arg1, arg2, arg3)
       # worker(Reddex.Worker, [arg1, arg2, arg3]),
     ]
