@@ -6,16 +6,14 @@
 use Mix.Config
 
 # General application configuration
-config :reddex,
-  ecto_repos: [Reddex.Repo]
+config :reddex, ecto_repos: [Reddex.Repo]
 
 # Configures the endpoint
 config :reddex, ReddexWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "0P86qy81s8e/mdHDNRT1kJaA478pZXPfyKhgAtt3vE0DmZw7GrGGN5IufIduThYC",
   render_errors: [view: ReddexWeb.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: Reddex.PubSub,
-           adapter: Phoenix.PubSub.PG2]
+  pubsub: [name: Reddex.PubSub, adapter: Phoenix.PubSub.PG2]
 
 # Configures Elixir's Logger
 config :logger, :console,
@@ -24,4 +22,4 @@ config :logger, :console,
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
-import_config "#{Mix.env}.exs"
+import_config "#{Mix.env()}.exs"
