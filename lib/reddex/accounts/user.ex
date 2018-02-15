@@ -1,12 +1,13 @@
 defmodule Reddex.Accounts.User do
+  @moduledoc false
+
   use Ecto.Schema
   import Ecto.Changeset
   alias Reddex.Accounts.User
 
-
   schema "users" do
-    field :email, :string
-    field :name, :string
+    field(:email, :string)
+    field(:name, :string)
 
     timestamps()
   end

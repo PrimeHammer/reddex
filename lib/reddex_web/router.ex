@@ -20,7 +20,7 @@ defmodule ReddexWeb.Router do
 
     get("/", PageController, :index)
     resources("/links", LinkController, only: [:index, :new, :create, :show])
-    resources "/users", UserController, only: [:index]
+    resources("/users", UserController, only: [:index])
   end
 
   # Other scopes may use custom stacks.
