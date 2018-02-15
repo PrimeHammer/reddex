@@ -12,8 +12,8 @@ config :logger, level: :warn
 # Configure your database
 config :reddex, Reddex.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
+  username: System.get_env("POSTGRES_USER") || "postgres",
+  password:  System.get_env("POSTGRES_PASSWORD") || "postgres",
   database: "reddex_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
