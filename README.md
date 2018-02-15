@@ -1,5 +1,7 @@
 # Reddex
 
+[![Build Status](https://semaphoreci.com/api/v1/dayweek/reddex/branches/master/badge.svg)](https://semaphoreci.com/dayweek/reddex)
+
 To start your Phoenix server:
 
   * Install dependencies with `mix deps.get`
