@@ -44,6 +44,8 @@ defmodule Reddex.Mixfile do
       {:distillery, "~> 1.0"},
       {:credo, "~> 0.9.0-rc1", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 0.5", only: [:dev], runtime: false},
+      {:sobelow, "~> 0.6.8", only: [:dev], runtime: false},
+      {:plug_secex, "~> 0.1.1"},
       {:wallaby, "~> 0.19.2", [runtime: false, only: :test]}
     ]
   end
