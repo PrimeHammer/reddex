@@ -26,13 +26,13 @@ defmodule ReddexWeb.ConnCase do
     end
   end
 
-
   setup tags do
     :ok = Ecto.Adapters.SQL.Sandbox.checkout(Reddex.Repo)
+
     unless tags[:async] do
       Ecto.Adapters.SQL.Sandbox.mode(Reddex.Repo, {:shared, self()})
     end
+
     {:ok, conn: Phoenix.ConnTest.build_conn()}
   end
-
 end
