@@ -14,10 +14,6 @@ defmodule ReddexWeb.Router do
     plug(:accepts, ["json"])
   end
 
-  pipeline :auth do
-    Ueberauth.plug "/auth"
-  end
-
   scope "/", ReddexWeb do
     # Use the default browser stack
     pipe_through(:browser)
@@ -29,8 +25,9 @@ defmodule ReddexWeb.Router do
 
   # TODO: move me
   scope "/auth", ReddexWeb do
-    pipe_through([:browser, :auth])
+    pipe_through([:browser])
 
+    get("/:provider", AuthController, :request)
     get("/:provider/callback", AuthController, :callback)
   end
 

@@ -63,5 +63,14 @@ defmodule Reddex.AccountsTest do
       user = user_fixture()
       assert %Ecto.Changeset{} = Accounts.change_user(user)
     end
+
+    test "checks if an email is in allowed emails" do
+      emails_env_var = "ivan@example.com erich@example.com"
+      assert Accounts.check_email_allowed?("ivan@example.com", emails_env_var)
+    end
+
+    test "finds or creates user by an email" do
+      email
+    end
   end
 end

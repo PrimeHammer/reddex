@@ -101,4 +101,11 @@ defmodule Reddex.Accounts do
   def change_user(%User{} = user) do
     User.changeset(user, %{})
   end
+
+  @doc "Check if an email is in allowed emails"
+  def check_email_allowed?(email, emails_env_var) do
+    emails_env_var
+    |> String.split(" ")
+    |> Enum.member?(email)
+  end
 end
