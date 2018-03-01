@@ -107,11 +107,13 @@ defmodule Reddex.Accounts do
 
   @doc "finds an account or creates new one"
   def find_or_create(auth, allowed_emails) do
-    if user_from_db = get_user_by_email(auth.info.email) do
-      user_from_db
-    else
-      {:ok, user = %User{}} = create_user(%{name: auth.info.name, email: auth.info.email})
-      user
+    cond do
+      check_email_allowed?(auth.info.email, allowed_emails) && (user_from_db = get_user_by_email(auth.info.email)) ->
+        user_from_db
+      check_email_allowed?(auth.info.email, allowed_emails) ->
+        {:ok, user = %User{}} = create_user(%{name: auth.info.name, email: auth.info.email})
+        user
+      true -> {:error, "Your email isn't allowed"}
     end
   end
 
