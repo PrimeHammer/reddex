@@ -6,7 +6,7 @@ defmodule Reddex.AccountsTest do
   describe "users" do
     alias Reddex.Accounts.User
 
-    @valid_attrs %{email: "some email", name: "some name"}
+    @valid_attrs %{email: "sefinko@ph.com", name: "some name"}
     @update_attrs %{email: "some updated email", name: "some updated name"}
     @invalid_attrs %{email: nil, name: nil}
 
@@ -31,7 +31,7 @@ defmodule Reddex.AccountsTest do
 
     test "create_user/1 with valid data creates a user" do
       assert {:ok, %User{} = user} = Accounts.create_user(@valid_attrs)
-      assert user.email == "some email"
+      assert user.email == "sefinko@ph.com"
       assert user.name == "some name"
     end
 
@@ -64,13 +64,24 @@ defmodule Reddex.AccountsTest do
       assert %Ecto.Changeset{} = Accounts.change_user(user)
     end
 
-    test "checks if an email is in allowed emails" do
-      emails_env_var = "ivan@example.com erich@example.com"
-      assert Accounts.check_email_allowed?("ivan@example.com", emails_env_var)
+    test "get_user_by_email/1 returns the user with given email" do
+      user = user_fixture()
+      assert user == Accounts.get_user_by_email("sefinko@ph.com")
     end
 
-    test "finds or creates user by an email" do
-      email
+    test "returns an user by an email if she exists in db and is allowed" do
+      user_fixture()
+      auth = %{info: %{email: "sefinko@ph.com"}}
+      allowed_emails = ["sefinko@ph.com"]
+      user_from_db = Accounts.find_or_create(auth, allowed_emails)
+      assert "some name" == user_from_db.name
+    end
+
+    test "creates an user with email and name if doesn't exist in db and is allowed" do
+      auth = %{info: %{email: "sefinko@ph.com", name: "some name"}}
+      allowed_emails = ["sefinko@ph.com"]
+      user_from_db = Accounts.find_or_create(auth, allowed_emails)
+      assert "some name" == user_from_db.name
     end
   end
 end

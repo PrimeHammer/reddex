@@ -37,6 +37,9 @@ defmodule Reddex.Accounts do
   """
   def get_user!(id), do: Repo.get!(User, id)
 
+  @doc "get user by email or raise an exception"
+  def get_user_by_email(email), do: Repo.get_by(User, email: email)
+
   @doc """
   Creates a user.
 
@@ -102,9 +105,19 @@ defmodule Reddex.Accounts do
     User.changeset(user, %{})
   end
 
+  @doc "finds an account or creates new one"
+  def find_or_create(auth, allowed_emails) do
+    if user_from_db = get_user_by_email(auth.info.email) do
+      user_from_db
+    else
+      {:ok, user = %User{}} = create_user(%{name: auth.info.name, email: auth.info.email})
+      user
+    end
+  end
+
   @doc "Check if an email is in allowed emails"
-  def check_email_allowed?(email, emails_env_var) do
-    emails_env_var
+  def check_email_allowed?(email, allowed_emails) do
+    allowed_emails
     |> String.split(" ")
     |> Enum.member?(email)
   end
