@@ -23,7 +23,7 @@ defmodule Reddex.IntegrationCase do
     :ok = Ecto.Adapters.SQL.Sandbox.checkout(Reddex.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.sandbox().mode(Reddex.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(Reddex.Repo, {:shared, self()})
     end
 
     metadata = Phoenix.Ecto.SQL.Sandbox.metadata_for(Reddex.Repo, self())
