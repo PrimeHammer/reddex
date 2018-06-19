@@ -1,6 +1,7 @@
 # Reddex
 
 [![Build Status](https://semaphoreci.com/api/v1/dayweek/reddex/branches/master/badge.svg)](https://semaphoreci.com/dayweek/reddex)
+[![Ebert](https://ebertapp.io/github/PrimeHammer/reddex.svg)](https://ebertapp.io/github/PrimeHammer/reddex)
 
 To start your Phoenix server:
 
