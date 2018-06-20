@@ -47,7 +47,8 @@ defmodule Reddex.Mixfile do
       {:sobelow, "~> 0.6.8", only: [:dev], runtime: false},
       {:plug_secex, "~> 0.1.1"},
       {:wallaby, "~> 0.19.2", [runtime: false, only: :test]},
-      {:readability, "~> 0.9"}
+      {:readability, "~> 0.9"},
+      {:sage, "~> 0.4.0"}
     ]
   end
 
