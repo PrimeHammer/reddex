@@ -4,10 +4,7 @@ defmodule Reddex.AccountsTest do
   alias Reddex.Accounts
 
   describe "users" do
-    alias Reddex.Accounts.User
-
     @valid_attrs %{email: "sefinko@ph.com", name: "some name"}
-    @update_attrs %{email: "some updated email", name: "some updated name"}
     @invalid_attrs %{email: nil, name: nil}
 
     def user_fixture(attrs \\ %{}) do

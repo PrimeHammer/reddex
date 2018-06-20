@@ -48,7 +48,7 @@ defmodule Reddex.Accounts do
           {:ok, user_from_db}
 
       check_email_allowed?(auth.info.email, allowed_emails) ->
-        {:ok, user = %User{}} = create_user(%{name: auth.info.name, email: auth.info.email})
+        {:ok, %User{}} = create_user(%{name: auth.info.name, email: auth.info.email})
 
       true ->
         {:error, "Your email isn't allowed"}
@@ -60,5 +60,12 @@ defmodule Reddex.Accounts do
     allowed_emails
     |> String.split(" ")
     |> Enum.member?(email)
+  end
+
+  @doc "Creates an user"
+  def create_user(attrs \\ {}) do
+    %User{}
+    |> User.changeset(attrs)
+    |> Repo.insert()
   end
 end
