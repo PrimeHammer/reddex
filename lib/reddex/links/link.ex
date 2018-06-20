@@ -5,11 +5,11 @@ defmodule Reddex.Links.Link do
   import Ecto.Changeset
 
   schema "links" do
-    field :description, :string
-    field :tags, {:array, :string}
-    field :tags_input, :string, virtual: true
-    field :title, :string
-    field :url, :string
+    field(:description, :string)
+    field(:tags, {:array, :string})
+    field(:tags_input, :string, virtual: true)
+    field(:title, :string)
+    field(:url, :string)
 
     timestamps()
   end
@@ -26,11 +26,13 @@ defmodule Reddex.Links.Link do
   defp tags_input_to_tags_array(changeset) do
     case changeset do
       %Ecto.Changeset{valid?: true, changes: %{tags_input: tags_input}} ->
-        tags = 
+        tags =
           tags_input
-            |> String.split(",")
-            |> Enum.map(&String.trim/1)
-          put_change(changeset, :tags, tags)
+          |> String.split(",")
+          |> Enum.map(&String.trim/1)
+
+        put_change(changeset, :tags, tags)
+
       _ ->
         changeset
     end

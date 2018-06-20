@@ -6,7 +6,12 @@ defmodule Reddex.LinksTest do
   describe "links" do
     alias Reddex.Links.Link
 
-    @valid_attrs %{description: "some description", tags_input: "tag1, tag2", title: "some title", url: "some url"}
+    @valid_attrs %{
+      description: "some description",
+      tags_input: "tag1, tag2",
+      title: "some title",
+      url: "some url"
+    }
     @invalid_attrs %{description: nil, tags: nil, title: nil, url: nil}
 
     def link_fixture(attrs \\ %{}) do

@@ -4,7 +4,7 @@ defmodule ReddexWeb.LinkView do
   def readable_tags(tags) do
     tags
     |> Enum.map(fn t -> "#{t}, " end)
-    |> Enum.join
+    |> Enum.join()
     |> String.slice(0..-3)
   end
 end

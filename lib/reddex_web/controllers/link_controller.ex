@@ -20,6 +20,7 @@ defmodule ReddexWeb.LinkController do
         conn
         |> put_flash(:info, "Link created successfully.")
         |> redirect(to: link_path(conn, :show, link))
+
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
