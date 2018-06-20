@@ -1,0 +1,27 @@
+<h2>Show Link</h2>
+
+<ul>
+
+  <li>
+    <strong>Url:</strong>
+    <%= @link.url %>
+  </li>
+
+  <li>
+    <strong>Tags:</strong>
+    <%= @link.tags |> readable_tags() %>
+  </li>
+
+  <li>
+    <strong>Title:</strong>
+    <%= @link.title %>
+  </li>
+
+  <li>
+    <strong>Description:</strong>
+    <%= @link.description %>
+  </li>
+
+</ul>
+
+<span><%= link "Back", to: link_path(@conn, :index) %></span>
