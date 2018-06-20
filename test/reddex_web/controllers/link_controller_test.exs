@@ -3,7 +3,7 @@ defmodule ReddexWeb.LinkControllerTest do
 
   alias Reddex.Links
 
-  @create_attrs %{description: "some description", tags: [], title: "some title", url: "some url"}
+  @create_attrs %{description: "some description", tags_input: "tag", title: "some title", url: "some url"}
   @invalid_attrs %{description: nil, tags: nil, title: nil, url: nil}
 
   def fixture(:link) do
