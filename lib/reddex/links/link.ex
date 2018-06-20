@@ -1,5 +1,5 @@
 defmodule Reddex.Links.Link do
-
+  @moduledoc false
   use Ecto.Schema
   import Ecto.Changeset
 
