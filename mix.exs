@@ -20,7 +20,7 @@ defmodule Reddex.Mixfile do
   def application do
     [
       mod: {Reddex.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :readability]
     ]
   end
 
@@ -46,7 +46,8 @@ defmodule Reddex.Mixfile do
       {:dialyxir, "~> 0.5", only: [:dev], runtime: false},
       {:sobelow, "~> 0.6.8", only: [:dev], runtime: false},
       {:plug_secex, "~> 0.1.1"},
-      {:wallaby, "~> 0.19.2", [runtime: false, only: :test]}
+      {:wallaby, "~> 0.19.2", [runtime: false, only: :test]},
+      {:readability, "~> 0.9"}
     ]
   end
 
