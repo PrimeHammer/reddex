@@ -33,7 +33,7 @@ defmodule Reddex.AccountsTest do
 
     test "returns an user by an email if she exists in db and is allowed" do
       user_fixture()
-      auth = %{info: %{email: "sefinko@ph.com"}}
+      auth = %{info: %{email: "sefinko@ph.com", name: "test"}}
       allowed_emails = "sefinko@ph.com"
       {:ok, user_from_db} = Accounts.find_or_create(auth, allowed_emails)
       assert "some name" == user_from_db.name

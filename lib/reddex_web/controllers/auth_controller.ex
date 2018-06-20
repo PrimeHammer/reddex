@@ -28,6 +28,7 @@ defmodule ReddexWeb.AuthController do
   def callback(%{assigns: %{ueberauth_auth: auth}} = conn, _params) do
     # TODO: move? Where? ENV variable?
     allowed_emails = "erich.kaderka@gmail.com matejminarik.fiit@gmail.com"
+
     case Accounts.find_or_create(auth, allowed_emails) do
       {:ok, user} ->
         conn
