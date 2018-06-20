@@ -17,7 +17,7 @@ defmodule Reddex.Links.Link do
   def changeset(link, attrs) do
     link
     |> cast(attrs, [:url, :tags, :title, :description])
-    |> validate_required([:url, :tags, :title, :description])
+    |> validate_required([:url, :tags])
     |> unique_constraint(:url)
   end
 end
