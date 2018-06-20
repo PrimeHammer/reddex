@@ -1,3 +1,4 @@
+
 defmodule Reddex.Links.Link do
   @moduledoc false
 
