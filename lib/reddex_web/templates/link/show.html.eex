@@ -9,7 +9,7 @@
 
   <li>
     <strong>Tags:</strong>
-    <%= @link.tags %>
+    <%= @link.tags |> readable_tags() %>
   </li>
 
   <li>
