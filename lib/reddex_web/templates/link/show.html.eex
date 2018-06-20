@@ -24,5 +24,4 @@
 
 </ul>
 
-<span><%= link "Edit", to: link_path(@conn, :edit, @link) %></span>
 <span><%= link "Back", to: link_path(@conn, :index) %></span>

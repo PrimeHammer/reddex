@@ -7,7 +7,6 @@ defmodule Reddex.LinksTest do
     alias Reddex.Links.Link
 
     @valid_attrs %{description: "some description", tags: [], title: "some title", url: "some url"}
-    @update_attrs %{description: "some updated description", tags: [], title: "some updated title", url: "some updated url"}
     @invalid_attrs %{description: nil, tags: nil, title: nil, url: nil}
 
     def link_fixture(attrs \\ %{}) do
@@ -39,28 +38,6 @@ defmodule Reddex.LinksTest do
 
     test "create_link/1 with invalid data returns error changeset" do
       assert {:error, %Ecto.Changeset{}} = Links.create_link(@invalid_attrs)
-    end
-
-    test "update_link/2 with valid data updates the link" do
-      link = link_fixture()
-      assert {:ok, link} = Links.update_link(link, @update_attrs)
-      assert %Link{} = link
-      assert link.description == "some updated description"
-      assert link.tags == []
-      assert link.title == "some updated title"
-      assert link.url == "some updated url"
-    end
-
-    test "update_link/2 with invalid data returns error changeset" do
-      link = link_fixture()
-      assert {:error, %Ecto.Changeset{}} = Links.update_link(link, @invalid_attrs)
-      assert link == Links.get_link!(link.id)
-    end
-
-    test "delete_link/1 deletes the link" do
-      link = link_fixture()
-      assert {:ok, %Link{}} = Links.delete_link(link)
-      assert_raise Ecto.NoResultsError, fn -> Links.get_link!(link.id) end
     end
 
     test "change_link/1 returns a link changeset" do
