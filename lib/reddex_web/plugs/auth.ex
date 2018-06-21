@@ -4,7 +4,9 @@ defmodule ReddexWeb.Plugs.Auth do
   def init(opts), do: opts
 
   def call(conn, _) do
-    if conn.assigns[:current_user] do
+    # TODO: Not sure about this
+    # maybe be more explicit in controllers with actions
+    if conn.assigns[:current_user] || conn.request_path == "/sign_in" do
       conn
     else
       conn |> redirect_to_login()

@@ -16,6 +16,12 @@ defmodule ReddexWeb.LinkControllerTest do
     link
   end
 
+  setup %{conn: conn} do
+    user = %Reddex.Accounts.User{name: "dhh"}
+    conn = assign(build_conn(), :current_user, user)
+    {:ok, conn: conn}
+  end
+
   describe "index" do
     test "lists all links", %{conn: conn} do
       conn = get(conn, link_path(conn, :index))
@@ -36,6 +42,9 @@ defmodule ReddexWeb.LinkControllerTest do
 
       assert %{id: id} = redirected_params(conn)
       assert redirected_to(conn) == link_path(conn, :show, id)
+      # TODO: Is there a better way?
+      user = %Reddex.Accounts.User{name: "dhh"}
+      conn = assign(build_conn(), :current_user, user)
 
       conn = get(conn, link_path(conn, :show, id))
       assert html_response(conn, 200) =~ "Show Link"
