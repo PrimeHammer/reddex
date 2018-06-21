@@ -11,7 +11,7 @@ defmodule ReddexWeb.Plugs.Auth do
     if get_session(conn, :current_user) || conn.request_path == "/sign_in" do
       conn
     else
-      conn |> redirect_to_login()
+      redirect_to_login(conn)
     end
   end
 
