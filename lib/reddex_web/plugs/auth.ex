@@ -1,4 +1,6 @@
 defmodule ReddexWeb.Plugs.Auth do
+  @moduledoc "Check if current_user is present in the session"
+
   import Plug.Conn
 
   def init(opts), do: opts
@@ -6,7 +8,7 @@ defmodule ReddexWeb.Plugs.Auth do
   def call(conn, _) do
     # TODO: Not sure about this
     # maybe be more explicit in controllers with actions
-    if conn.assigns[:current_user] || conn.request_path == "/sign_in" do
+    if get_session(conn, :current_user) || conn.request_path == "/sign_in" do
       conn
     else
       conn |> redirect_to_login()

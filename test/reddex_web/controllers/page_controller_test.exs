@@ -3,7 +3,7 @@ defmodule ReddexWeb.PageControllerTest do
 
   setup %{conn: conn} do
     user = %Reddex.Accounts.User{name: "dhh"}
-    conn = assign(build_conn(), :current_user, user)
+    conn = Plug.Test.init_test_session(conn, current_user: user)
     {:ok, conn: conn}
   end
 

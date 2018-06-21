@@ -8,7 +8,6 @@ defmodule ReddexWeb.Router do
     plug(:protect_from_forgery)
     plug(:put_secure_browser_headers)
     plug(PlugSecex)
-    plug(ReddexWeb.Plugs.Auth)
   end
 
   pipeline :api do
@@ -17,7 +16,7 @@ defmodule ReddexWeb.Router do
 
   scope "/", ReddexWeb do
     # Use the default browser stack and authentication
-    pipe_through([:browser])
+    pipe_through([:browser, ReddexWeb.Plugs.Auth])
 
     get("/", PageController, :index)
     get("/sign_in", PageController, :sign_in)
