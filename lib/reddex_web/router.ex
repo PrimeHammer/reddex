@@ -20,6 +20,15 @@ defmodule ReddexWeb.Router do
 
     get("/", PageController, :index)
     resources("/links", LinkController, only: [:index, :new, :create, :show])
+    resources("/users", UserController, only: [:index])
+  end
+
+  # TODO: move me
+  scope "/auth", ReddexWeb do
+    pipe_through([:browser])
+
+    get("/:provider", AuthController, :request)
+    get("/:provider/callback", AuthController, :callback)
   end
 
   # Other scopes may use custom stacks.
