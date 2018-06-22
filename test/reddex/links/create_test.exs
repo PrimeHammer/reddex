@@ -3,9 +3,9 @@ defmodule Reddex.Links.CreateTest do
 
   import Mock
 
-  describe "create link" do
-    @link_params %{"url" => "some url", "tags_input" => "link"}
+  @link_params %{"url" => "some url", "tags_input" => "link"}
 
+  describe "create link" do
     setup_with_mocks([
       {Readability, [],
        [
@@ -34,8 +34,6 @@ defmodule Reddex.Links.CreateTest do
   end
 
   describe "truncate description" do
-    @link_params %{"url" => "some url", "tags_input" => "link"}
-
     test "truncates to 140 characters" do
       with_mock Readability,
         summarize: fn _url ->
@@ -53,6 +51,16 @@ defmodule Reddex.Links.CreateTest do
         end do
         {:ok, _, %{updated_link: link}} = Reddex.Links.Create.run(@link_params)
         assert String.length(link.description) == 140
+      end
+    end
+  end
+
+  describe "readability errors" do
+    test "fails gracefully" do
+      with_mock Readability,
+        summarize: fn _url -> raise "Error" end do
+        {:error, message} = Reddex.Links.Create.run(@link_params)
+        assert message == "Could not fetch details"
       end
     end
   end

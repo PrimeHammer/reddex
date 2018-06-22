@@ -11,7 +11,7 @@ defmodule ReddexWeb.LinkController do
 
   def new(conn, _params) do
     changeset = Links.change_link(%Link{})
-    render(conn, "new.html", changeset: changeset)
+    render(conn, "new.html", changeset: changeset, error_message: nil)
   end
 
   def create(conn, %{"link" => link_params}) do
@@ -22,7 +22,15 @@ defmodule ReddexWeb.LinkController do
         |> redirect(to: link_path(conn, :show, link))
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        render(conn, "new.html", changeset: changeset, error_message: nil)
+
+      {:error, error_message} ->
+        render(
+          conn,
+          "new.html",
+          changeset: Links.change_link(%Link{}),
+          error_message: error_message
+        )
     end
   end
 

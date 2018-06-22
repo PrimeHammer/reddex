@@ -1,5 +1,11 @@
 <h2>New Link</h2>
 
+<%= if @error_message do %>
+  <div class="alert alert-danger">
+    <p><%= @error_message %></p>
+  </div>
+<% end %>
+
 <%= render "form.html", Map.put(assigns, :action, link_path(@conn, :create)) %>
 
 <span><%= link "Back", to: link_path(@conn, :index) %></span>
