@@ -48,7 +48,8 @@ defmodule Reddex.Mixfile do
       {:plug_secex, "~> 0.1.1"},
       {:wallaby, "~> 0.19.2", [runtime: false, only: :test]},
       {:readability, "~> 0.9"},
-      {:sage, "~> 0.4.0"}
+      {:sage, "~> 0.4.0"},
+      {:mock, "~> 0.3.0", only: :test}
     ]
   end
 
