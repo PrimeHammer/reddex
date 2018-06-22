@@ -16,8 +16,7 @@ defmodule ReddexWeb.LinkController do
 
   def create(conn, %{"link" => link_params}) do
     case Reddex.Links.Create.run(link_params) do
-      # TODO: Link From Effects
-      {:ok, link, _effects} ->
+      {:ok, _, %{link: link}} ->
         conn
         |> put_flash(:info, "Link created successfully.")
         |> redirect(to: link_path(conn, :show, link))
