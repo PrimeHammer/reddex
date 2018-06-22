@@ -34,12 +34,11 @@ defmodule ReddexWeb.LinkControllerTest do
 
   describe "create link" do
     test "redirects to show when data is valid", %{conn: conn} do
-      with_mock Reddex.Links.Create, [
-        run: fn(params) -> 
+      with_mock Reddex.Links.Create,
+        run: fn params ->
           {:ok, link} = Links.create_link(params)
           {:ok, link, %{link: link}}
-        end
-      ] do
+        end do
         conn = post(conn, link_path(conn, :create), link: @create_attrs)
 
         assert %{id: id} = redirected_params(conn)

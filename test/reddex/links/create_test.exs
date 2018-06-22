@@ -32,4 +32,28 @@ defmodule Reddex.Links.CreateTest do
       assert link.description == "Mocked Description"
     end
   end
+
+  describe "truncate description" do
+    @link_params %{"url" => "some url", "tags_input" => "link"}
+
+    test "truncates to 140 characters" do
+      with_mock Readability,
+        summarize: fn _url ->
+          long_text =
+            0..9
+            |> Stream.cycle()
+            |> Enum.take(150)
+            |> Enum.map(&Integer.to_string/1)
+            |> Enum.join()
+
+          %{
+            title: "Mocked Title",
+            article_text: long_text
+          }
+        end do
+        {:ok, _, %{updated_link: link}} = Reddex.Links.Create.run(@link_params)
+        assert String.length(link.description) == 140
+      end
+    end
+  end
 end
