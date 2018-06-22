@@ -1,4 +1,8 @@
 defmodule Reddex.Links.Create do
+  @moduledoc """
+  Creates a Link, Fetches Title and Description and Updates the Link created
+  """
+
   import Sage
 
   alias Reddex.Links
