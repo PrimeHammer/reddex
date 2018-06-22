@@ -1,0 +1,13 @@
+.icon {
+  background-repeat: no-repeat;
+  display: inline-block;
+  height: 2rem;
+  vertical-align: middle;
+  width: 2rem;
+
+  @each $name in github {
+    &.#{$name} {
+      background-image: url("/images/#{$name}.svg");
+    }
+  }
+}
