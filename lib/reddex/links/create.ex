@@ -8,7 +8,7 @@ defmodule Reddex.Links.Create do
     new()
     |> run(:link, &create_link/2, &handle_create_errors/4)
     |> run(:details, &fetch_details/2)
-    # |> run(:link_update, &update_link/2)
+    |> run(:updated_link, &update_link/2)
     |> finally(&acknowledge_job/2)
     |> transaction(Reddex.Repo, link_params)
   end
@@ -29,15 +29,12 @@ defmodule Reddex.Links.Create do
     IO.puts("Fetch Details")
     IO.inspect(effects)
     IO.puts("-------------")
-    summary = Readability.summarize(url)
-    IO.puts(summary.title)
-    {:ok, summary}
+    %{title: title, article_text: article_text} = Readability.summarize(url)
+    {:ok, %{title: title, description: article_text}}
   end
 
-  defp update_link(effects, link_params) do
-    IO.puts("Update Link")
-    IO.inspect(effects)
-    {:ok, link_params}
+  defp update_link(%{link: link, details: details}, _link_params) do
+    Links.update_link(link, details)
   end
 
   defp acknowledge_job(:ok, attrs) do

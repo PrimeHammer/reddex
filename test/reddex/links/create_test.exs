@@ -12,7 +12,7 @@ defmodule Reddex.Links.CreateTest do
          summarize: fn _url ->
            %{
              title: "Mocked Title",
-             description: "Mocked Description"
+             article_text: "Mocked Description"
            }
          end
        ]}
@@ -24,6 +24,12 @@ defmodule Reddex.Links.CreateTest do
       {:ok, _, %{details: details}} = Reddex.Links.Create.run(@link_params)
       assert details.title == "Mocked Title"
       assert details.description == "Mocked Description"
+    end
+
+    test "updates title and description" do
+      {:ok, _, %{updated_link: link}} = Reddex.Links.Create.run(@link_params)
+      assert link.title == "Mocked Title"
+      assert link.description == "Mocked Description"
     end
   end
 end
