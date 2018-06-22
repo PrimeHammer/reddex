@@ -20,13 +20,11 @@ defmodule Reddex.Links.Create do
   end
 
   defp fetch_details(_effects, %{"url" => url}) do
-    try do
-      %{title: title, article_text: article_text} = Readability.summarize(url)
-      description = article_text_to_description(article_text)
-      {:ok, %{title: title, description: description}}
-    rescue
-      _ -> {:error, "Could not fetch details"}
-    end
+    %{title: title, article_text: article_text} = Readability.summarize(url)
+    description = article_text_to_description(article_text)
+    {:ok, %{title: title, description: description}}
+  rescue
+    _ -> {:error, "Could not fetch details"}
   end
 
   defp update_link(%{link: link, details: details}, _link_params) do
