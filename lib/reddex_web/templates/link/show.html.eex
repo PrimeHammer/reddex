@@ -1,27 +1,29 @@
-<h2>Show Link</h2>
+<div class="container is-fluid">
+  <h2>Show Link</h2>
 
-<ul>
+  <ul>
 
-  <li>
-    <strong>Url:</strong>
-    <%= @link.url %>
-  </li>
+    <li>
+      <strong>Url:</strong>
+      <%= @link.url %>
+    </li>
 
-  <li>
-    <strong>Tags:</strong>
-    <%= @link.tags |> readable_tags() %>
-  </li>
+    <li>
+      <strong>Tags:</strong>
+      <%= @link.tags |> readable_tags() %>
+    </li>
 
-  <li>
-    <strong>Title:</strong>
-    <%= @link.title %>
-  </li>
+    <li>
+      <strong>Title:</strong>
+      <%= @link.title %>
+    </li>
 
-  <li>
-    <strong>Description:</strong>
-    <%= @link.description %>
-  </li>
+    <li>
+      <strong>Description:</strong>
+      <%= @link.description %>
+    </li>
 
-</ul>
+  </ul>
 
-<span><%= link "Back", to: link_path(@conn, :index) %></span>
+  <span><%= link "Back", to: link_path(@conn, :index) %></span>
+</div>
