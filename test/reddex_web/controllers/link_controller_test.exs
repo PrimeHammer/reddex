@@ -16,6 +16,12 @@ defmodule ReddexWeb.LinkControllerTest do
     link
   end
 
+  setup %{conn: conn} do
+    user = %Reddex.Accounts.User{name: "dhh"}
+    conn = Plug.Test.init_test_session(conn, current_user: user)
+    {:ok, conn: conn}
+  end
+
   describe "index" do
     test "lists all links", %{conn: conn} do
       conn = get(conn, link_path(conn, :index))
@@ -31,11 +37,15 @@ defmodule ReddexWeb.LinkControllerTest do
   end
 
   describe "create link" do
+    # @tag :skip
     test "redirects to show when data is valid", %{conn: conn} do
       conn = post(conn, link_path(conn, :create), link: @create_attrs)
 
       assert %{id: id} = redirected_params(conn)
       assert redirected_to(conn) == link_path(conn, :show, id)
+      # TODO: BIG TODO  How to fix this?
+      # user = %Reddex.Accounts.User{name: "dhh"}
+      # conn = Plug.Conn.put_session(conn, :current_user, user)
 
       conn = get(conn, link_path(conn, :show, id))
       assert html_response(conn, 200) =~ "Show Link"
