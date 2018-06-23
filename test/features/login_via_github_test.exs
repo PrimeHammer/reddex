@@ -4,6 +4,6 @@ defmodule Reddex.LoginViaGithub do
   test "can click and login via github", %{session: session} do
     session
     |> visit("/")
-    |> assert_has(Query.css(".login-form"))
+    |> assert_has(Query.css(".fa-github"))
   end
 end
