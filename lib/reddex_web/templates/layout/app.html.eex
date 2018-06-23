@@ -15,8 +15,17 @@
   <body class="reddex">
     <%= render ReddexWeb.LayoutView, "navbar.html" %>
 
-      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+      <% if get_flash(@conn, :info) do %>
+      <div class="notification is-info">
+        <%= get_flash(@conn, :info) %>
+      </div>
+      <% end %>
+
+      <% if get_flash(@conn, :error) do %>
+      <div class="notification is-danger">
+        <%= get_flash(@conn, :error) %>
+      </div>
+      <% end %>
 
       <main role="main">
         <%= render @view_module, @view_template, assigns %>
