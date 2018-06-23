@@ -3,7 +3,7 @@ html {
   font-size: 16px !important;
 }
 
-body.reddex {
+.reddex-body {
   margin-bottom: 0;
 }
 
@@ -13,6 +13,6 @@ body.reddex {
 }
 
 a.reddex-logo:hover {
-  text-decoration: none;
   color: inherit;
+  text-decoration: none;
 }

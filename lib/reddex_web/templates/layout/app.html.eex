@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
   </head>
 
-  <body class="reddex">
+  <body class="reddex-body">
     <%= render ReddexWeb.LayoutView, "navbar.html" %>
 
       <% if get_flash(@conn, :info) do %>
