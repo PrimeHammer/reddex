@@ -1,1 +1,8 @@
 /* This file is for your main application css. */
+html {
+  font-size: 16px !important;
+}
+
+body.reddex {
+  margin-bottom: 0;
+}
