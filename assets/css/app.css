@@ -28,8 +28,8 @@ a.reddex-logo:hover {
 }
 
 .notification {
-  transition-property: height, margin, padding;
   transition-duration: 0.3s;
+  transition-property: height, margin, padding;
   transition-timing-function: ease-out;
 }
 
