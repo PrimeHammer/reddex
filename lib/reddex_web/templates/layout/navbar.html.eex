@@ -1,4 +1,4 @@
-<nav class="navbar is-transparent">
+<nav class="navbar is-transparent is-info is-bold">
   <div class="navbar-brand">
     <a class="navbar-item reddex-logo" href="/">
       Reddex

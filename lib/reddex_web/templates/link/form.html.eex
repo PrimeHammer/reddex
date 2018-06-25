@@ -6,13 +6,6 @@
   <% end %>
 
   <div class="field">
-    <label class="label">Name</label>
-    <div class="control">
-      <input class="input" type="text" placeholder="Text input">
-    </div>
-  </div>
-
-  <div class="field">
     <%= label f, :url, class: "label" %>
     <div class="control">
       <%= text_input f, :url, class: "input" %>

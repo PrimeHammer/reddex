@@ -14,7 +14,7 @@
   <body>
     <%= render ReddexWeb.LayoutView, "navbar.html" %>
 
-    <div class="notification is-info"><%= get_flash(@conn, :info) %></div>
+    <div class="notification is-primary"><%= get_flash(@conn, :info) %></div>
     <div class="notification is-danger"><%= get_flash(@conn, :error) %></div>
 
     <main role="main">
