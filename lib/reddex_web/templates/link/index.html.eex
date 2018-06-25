@@ -7,23 +7,15 @@
   <table class="table">
     <thead>
       <tr>
-        <th>Url</th>
-        <th>Tags</th>
         <th>Title</th>
-
-        <th></th>
+        <th>Tags</th>
       </tr>
     </thead>
     <tbody>
   <%= for link <- @links do %>
       <tr>
-        <td><%= link.url %></td>
-        <td><%= link.tags %></td>
-        <td><%= link.title %></td>
-
-        <td class="text-right">
-          <span><%= link "Show", to: link_path(@conn, :show, link), class: "btn btn-default btn-xs" %></span>
-        </td>
+        <td><%= link link.title, to: link_path(@conn, :show, link) %></td>
+        <td><%= readable_tags(link.tags) %></td>
       </tr>
   <% end %>
     </tbody>
