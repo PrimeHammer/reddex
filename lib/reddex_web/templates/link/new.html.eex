@@ -1,4 +1,4 @@
-<div class="container content">
+<div class="container content margin-top">
   <h2>New Link</h2>
 
   <%= if @error_message do %>
