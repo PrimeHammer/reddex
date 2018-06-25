@@ -1,4 +1,3 @@
-require IEx
 defmodule ReddexWeb.AuthController do
   @moduledoc """
   Auth controller to handle Uberauth responses
