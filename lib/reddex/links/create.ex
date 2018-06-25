@@ -34,10 +34,7 @@ defmodule Reddex.Links.Create do
   defp article_text_to_description(article_text) do
     article_text
     |> String.split("\n")
-    |> Enum.slice(0..3)
+    |> Enum.slice(0..4)
     |> Enum.join()
-    |> String.to_charlist()
-    |> Enum.take(140)
-    |> List.to_string()
   end
 end
