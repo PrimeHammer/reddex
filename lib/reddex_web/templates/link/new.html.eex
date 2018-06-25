@@ -1,5 +1,7 @@
-<h2>New Link</h2>
+<div class="container content">
+  <h2>New Link</h2>
 
-<%= render "form.html", Map.put(assigns, :action, link_path(@conn, :create)) %>
+  <%= render "form.html", Map.put(assigns, :action, link_path(@conn, :create)) %>
 
-<span><%= link "Back", to: link_path(@conn, :index) %></span>
+  <span><%= link "Back", to: link_path(@conn, :index) %></span>
+</div>
