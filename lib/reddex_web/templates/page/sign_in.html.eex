@@ -1,3 +1,20 @@
-<div class="login-form">
-  <%= link "Login form for Github", to: auth_path(@conn, :request, :github) %></span>
-</div>
+<section class="hero is-info is-large is-bold">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        Welcome to Reddex
+      </h1>
+      <h2 class="subtitle">
+        PrimeHammer's Knowledge Base
+      </h2>
+      <p>
+        <%= link to: auth_path(@conn, :request, :github), class: "button is-medium" do %>
+          <span class="icon is-medium">
+            <i class="fab fa-github"></i>
+          </span>
+          <span>Login with Github</span>
+        <% end %>
+      </p>
+    </div>
+  </div>
+</section>

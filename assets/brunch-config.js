@@ -57,6 +57,9 @@ exports.config = {
   },
 
   npm: {
-    enabled: true
+    enabled: true,
+    styles: {
+      bulma: ['css/bulma.min.css']
+    }
   }
 };
