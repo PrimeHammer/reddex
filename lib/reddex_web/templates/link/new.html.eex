@@ -1,4 +1,4 @@
-<div class="container is-fluid">
+<div class="container content">
   <h2>New Link</h2>
 
   <%= render "form.html", Map.put(assigns, :action, link_path(@conn, :create)) %>

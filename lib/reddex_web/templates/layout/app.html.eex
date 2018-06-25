@@ -11,24 +11,24 @@
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
   </head>
 
-  <body class="reddex-body">
+  <body>
     <%= render ReddexWeb.LayoutView, "navbar.html" %>
 
-      <% if get_flash(@conn, :info) do %>
-      <div class="notification is-info">
-        <%= get_flash(@conn, :info) %>
-      </div>
-      <% end %>
+    <% if get_flash(@conn, :info) do %>
+    <div class="notification is-info">
+      <%= get_flash(@conn, :info) %>
+    </div>
+    <% end %>
 
-      <% if get_flash(@conn, :error) do %>
-      <div class="notification is-danger">
-        <%= get_flash(@conn, :error) %>
-      </div>
-      <% end %>
+    <% if get_flash(@conn, :error) do %>
+    <div class="notification is-danger">
+      <%= get_flash(@conn, :error) %>
+    </div>
+    <% end %>
 
-      <main role="main">
-        <%= render @view_module, @view_template, assigns %>
-      </main>
+    <main role="main">
+      <%= render @view_module, @view_template, assigns %>
+    </main>
 
     <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>

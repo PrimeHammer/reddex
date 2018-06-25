@@ -1,4 +1,4 @@
-<div class="container is-fluid">
+<div class="container content is-fluid">
   <h2>Listing Links</h2>
   <span>
     <%= link "New Link", to: link_path(@conn, :new), class: "button is-primary" %>
