@@ -2,7 +2,6 @@ defmodule ReddexWeb.UserController do
   use ReddexWeb, :controller
 
   alias Reddex.Accounts
-  alias Reddex.Accounts.User
 
   def index(conn, _params) do
     users = Accounts.list_users()

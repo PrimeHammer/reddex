@@ -27,6 +27,7 @@ defmodule ReddexWeb.Router do
 
     get("/", PageController, :index)
     get("/sign_in", PageController, :sign_in)
+    delete("/logout", AuthController, :delete)
     resources("/links", LinkController, only: [:index, :new, :create, :show])
     resources("/users", UserController, only: [:index])
   end

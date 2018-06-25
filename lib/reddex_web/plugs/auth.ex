@@ -8,7 +8,7 @@ defmodule ReddexWeb.Plugs.Auth do
   def call(conn, _) do
     # TODO: Not sure about this
     # maybe be more explicit in controllers with actions
-    if get_session(conn, :current_user) || conn.request_path == "/sign_in" do
+    if get_session(conn, :current_user) || conn.request_path == "/sign_in" || conn.request_path == "/logout" do
       conn
     else
       redirect_to_login(conn)
