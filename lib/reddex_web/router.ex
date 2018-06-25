@@ -7,9 +7,14 @@ defmodule ReddexWeb.Router do
     plug(:fetch_flash)
     plug(:protect_from_forgery)
     plug(:put_secure_browser_headers)
-    plug(PlugSecex, overrides: [
-      "content-security-policy": "default-src 'self'; script-src 'self' use.fontawesome.com 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' 'unsafe-eval'"
-    ])
+
+    plug(
+      PlugSecex,
+      overrides: [
+        "content-security-policy":
+          "default-src 'self'; script-src 'self' use.fontawesome.com 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' 'unsafe-eval'"
+      ]
+    )
   end
 
   pipeline :api do
