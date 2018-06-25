@@ -7,6 +7,7 @@ nav {
 .reddex-logo {
   font-size: 2rem;
   letter-spacing: 2px;
+  margin-bottom: 1px;
 }
 
 a.reddex-logo:hover {
