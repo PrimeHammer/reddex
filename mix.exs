@@ -21,7 +21,7 @@ defmodule Reddex.Mixfile do
     [
       mod: {Reddex.Application, []},
       extra_applications: [:logger, :runtime_tools, :ueberauth,
-                           :ueberauth_github]
+                           :ueberauth_github, :readability]
     ]
   end
 
@@ -47,9 +47,12 @@ defmodule Reddex.Mixfile do
       {:dialyxir, "~> 0.5", only: [:dev], runtime: false},
       {:sobelow, "~> 0.6.8", only: [:dev], runtime: false},
       {:plug_secex, "~> 0.1.1"},
+      {:wallaby, "~> 0.19.2", [runtime: false, only: :test]},
+      {:readability, "~> 0.9"},
+      {:sage, "~> 0.4.0"},
+      {:mock, "~> 0.3.0", only: :test},
       {:ueberauth, "~> 0.4"},
       {:ueberauth_github, "~> 0.7"},
-      {:wallaby, "~> 0.19.2", [runtime: false, only: :test]}
     ]
   end
 

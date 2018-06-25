@@ -10,7 +10,6 @@
         <th>Url</th>
         <th>Tags</th>
         <th>Title</th>
-        <th>Description</th>
 
         <th></th>
       </tr>
@@ -21,7 +20,6 @@
         <td><%= link.url %></td>
         <td><%= link.tags %></td>
         <td><%= link.title %></td>
-        <td><%= link.description %></td>
 
         <td class="text-right">
           <span><%= link "Show", to: link_path(@conn, :show, link), class: "btn btn-default btn-xs" %></span>
