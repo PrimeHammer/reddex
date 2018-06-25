@@ -9,19 +9,13 @@
       <tr>
         <th>Title</th>
         <th>Tags</th>
-
-        <th></th>
       </tr>
     </thead>
     <tbody>
   <%= for link <- @links do %>
       <tr>
-        <td><%= link.title %></td>
-        <td><%= link.tags %></td>
-
-        <td class="text-right">
-          <span><%= link "Show", to: link_path(@conn, :show, link), class: "btn btn-default btn-xs" %></span>
-        </td>
+        <td><%= link link.title, to: link_path(@conn, :show, link) %></td>
+        <td><%= readable_tags(link.tags) %></td>
       </tr>
   <% end %>
     </tbody>
