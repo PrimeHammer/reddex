@@ -1,0 +1,3 @@
+<div class="login-form">
+  <%= link "Login form for Github", to: auth_path(@conn, :request, :github) %></span>
+</div>

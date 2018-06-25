@@ -15,8 +15,7 @@ Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 ## Login via Github on localhost
 
   * Ask @erich/@matej for github client id and secret / or use your own
-  * Set ENV GITHUB_CLIENT_ID and GITHUB_CLIENT_SECRET
-  * Modify /etc/hosts - add 127.0.0.1 scholarly-wilted-madagascarhissingroach.gigalixirapp.com (Our gigalixir domain)
+  * Set `ENV GITHUB_CLIENT_ID` and `GITHUB_CLIENT_SECRET`
 
 Ready to run in production? Please [check our deployment guides](http://www.phoenixframework.org/docs/deployment).
 

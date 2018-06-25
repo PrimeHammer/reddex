@@ -18,6 +18,12 @@ defmodule ReddexWeb.LinkControllerTest do
     link
   end
 
+  setup %{conn: conn} do
+    user = %Reddex.Accounts.User{name: "dhh"}
+    conn = Plug.Test.init_test_session(conn, current_user: user)
+    {:ok, conn: conn}
+  end
+
   describe "index" do
     test "lists all links", %{conn: conn} do
       conn = get(conn, link_path(conn, :index))
@@ -33,6 +39,7 @@ defmodule ReddexWeb.LinkControllerTest do
   end
 
   describe "create link" do
+    # @tag :skip
     test "redirects to show when data is valid", %{conn: conn} do
       with_mock Reddex.Links.Create,
         run: fn params ->
