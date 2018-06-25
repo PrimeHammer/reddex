@@ -55,6 +55,12 @@ defmodule Reddex.Links do
     |> Repo.insert()
   end
 
+  def update_link(%Link{} = link, attrs) do
+    link
+    |> Link.changeset(attrs)
+    |> Repo.update()
+  end
+
   @doc """
   Returns an `%Ecto.Changeset{}` for tracking link changes.
 

@@ -3,6 +3,8 @@ defmodule ReddexWeb.LinkControllerTest do
 
   alias Reddex.Links
 
+  import Mock
+
   @create_attrs %{
     description: "some description",
     tags_input: "tag",
@@ -39,16 +41,19 @@ defmodule ReddexWeb.LinkControllerTest do
   describe "create link" do
     # @tag :skip
     test "redirects to show when data is valid", %{conn: conn} do
-      conn = post(conn, link_path(conn, :create), link: @create_attrs)
+      with_mock Reddex.Links.Create,
+        run: fn params ->
+          {:ok, link} = Links.create_link(params)
+          {:ok, link, %{link: link}}
+        end do
+        conn = post(conn, link_path(conn, :create), link: @create_attrs)
 
-      assert %{id: id} = redirected_params(conn)
-      assert redirected_to(conn) == link_path(conn, :show, id)
-      # TODO: BIG TODO  How to fix this?
-      # user = %Reddex.Accounts.User{name: "dhh"}
-      # conn = Plug.Conn.put_session(conn, :current_user, user)
+        assert %{id: id} = redirected_params(conn)
+        assert redirected_to(conn) == link_path(conn, :show, id)
 
-      conn = get(conn, link_path(conn, :show, id))
-      assert html_response(conn, 200) =~ "Show Link"
+        conn = get(conn, link_path(conn, :show, id))
+        assert html_response(conn, 200) =~ "Show Link"
+      end
     end
 
     test "renders errors when data is invalid", %{conn: conn} do
