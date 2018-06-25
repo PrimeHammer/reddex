@@ -4,6 +4,10 @@ nav {
   padding-top: 1rem;
 }
 
+.navbar.is-bold {
+  background-image: linear-gradient(10deg,#04a6d7 0,#209cee 71%,#3287f5 100%);
+}
+
 .margin-top {
   margin-top: 1rem;
 }
@@ -21,4 +25,16 @@ a.reddex-logo:hover {
 
 .notification:empty {
   display: none;
+}
+
+.notification {
+  transition-property: height, margin, padding;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-out;
+}
+
+.notification.hidden {
+  height: 0;
+  margin: 0;
+  padding: 0;
 }
