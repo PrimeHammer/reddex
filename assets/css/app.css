@@ -14,3 +14,7 @@ a.reddex-logo:hover {
   color: inherit;
   text-decoration: none;
 }
+
+.notification:empty {
+  display: none;
+}
