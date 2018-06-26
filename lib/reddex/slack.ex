@@ -1,4 +1,12 @@
 defmodule Reddex.Slack do
+  @moduledoc """
+  GenServer for sending messages to Slack
+
+  ## Examples
+
+    iex> Reddex.Slack.send_message("Message", "#random")
+  """
+
   use GenServer
 
   @name REDDEX_SLACK_SERVER

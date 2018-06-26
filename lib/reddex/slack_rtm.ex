@@ -1,4 +1,9 @@
 defmodule Reddex.SlackRtm do
+  @moduledoc """
+  Slack Real Time Messaging
+  See: https://hexdocs.pm/slack/Slack.html
+  """
+
   use Slack
 
   def start_link(token) do
