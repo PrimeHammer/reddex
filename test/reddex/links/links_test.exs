@@ -3,6 +3,8 @@ defmodule Reddex.LinksTest do
 
   alias Reddex.Links
 
+  import Reddex.LinkFactory
+
   describe "links" do
     alias Reddex.Links.Link
 
@@ -53,6 +55,12 @@ defmodule Reddex.LinksTest do
     test "change_link/1 returns a link changeset" do
       link = link_fixture()
       assert %Ecto.Changeset{} = Links.change_link(link)
+    end
+
+    test "list_pending_links/0 returns link waiting to be reported" do
+      insert(:link) # %{sent_to_slack: false}
+      pending = Links.list_pending_links()
+      assert List.length(pending) == 1
     end
   end
 end
