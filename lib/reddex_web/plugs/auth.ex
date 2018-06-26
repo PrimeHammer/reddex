@@ -6,9 +6,7 @@ defmodule ReddexWeb.Plugs.Auth do
   def init(opts), do: opts
 
   def call(conn, _) do
-    # TODO: Not sure about this
-    # maybe be more explicit in controllers with actions
-    if get_session(conn, :current_user) || conn.request_path == "/sign_in" || conn.request_path == "/logout" do
+    if !!get_session(conn, :current_user) || skip_auth?(conn.request_path) do
       conn
     else
       redirect_to_login(conn)
@@ -18,4 +16,8 @@ defmodule ReddexWeb.Plugs.Auth do
   defp redirect_to_login(conn) do
     conn |> Phoenix.Controller.redirect(to: "/sign_in") |> halt()
   end
+
+  defp skip_auth?("/sign_in"), do: true
+  defp skip_auth?("/logout"), do: true
+  defp skip_auth?(_), do: false
 end
