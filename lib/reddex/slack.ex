@@ -4,16 +4,20 @@ defmodule Reddex.Slack do
   @name REDDEX_SLACK_SERVER
 
   def start_link(token) do
-    {:ok, rtm} = Reddex.SlackRtm.start_link(token)
-    GenServer.start_link(__MODULE__, %{rtm: rtm}, [name: @name])
+    {:ok, pid} = Reddex.SlackRtm.start_link(token)
+    GenServer.start_link(__MODULE__, %{pid: pid}, [name: @name])
+  end
+
+  def init(args) do
+    {:ok, args}
   end
 
   def send_message(message, channel) do
-    GenServer.call(@name, {:send_message, message, channel})
+    GenServer.cast(@name, {:send_message, message, channel})
   end
 
-  def handle_call({:send_message, message, channel}, _from, %{rtm: rtm} = state) do
-    send rtm, {:message, message, channel}
-    {:reply, :ok, state}
+  def handle_cast({:send_message, message, channel}, %{pid: pid} = state) do
+    send pid, {:message, message, channel}
+    {:noreply, state}
   end
 end
