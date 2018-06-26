@@ -25,5 +25,16 @@
 
   </ul>
 
+  <h3>Comments</h3>
+  <ul>
+    <%= for comment <- @link.comments do %>
+    <li><%= comment.text %></li>
+    <% end %>
+  </ul>
+
+  <h3>New comment</h3>
+  <%#= render "comment_form.html", Map.put(assigns, :action, link_comment_path(@conn, :create, @link.id)) %>
+  <%= render "comment_form.html", assigns %>
+
   <span><%= link "Back", to: link_path(@conn, :index) %></span>
 </div>

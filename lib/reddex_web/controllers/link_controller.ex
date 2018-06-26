@@ -3,6 +3,7 @@ defmodule ReddexWeb.LinkController do
 
   alias Reddex.Links
   alias Reddex.Links.Link
+  alias Reddex.Links.Comment
 
   def index(conn, _params) do
     links = Links.list_links()
@@ -36,6 +37,7 @@ defmodule ReddexWeb.LinkController do
 
   def show(conn, %{"id" => id}) do
     link = Links.get_link!(id)
-    render(conn, "show.html", link: link)
+    changeset = Links.change_comment(%Comment{})
+    render(conn, "show.html", changeset: changeset, link: link)
   end
 end
