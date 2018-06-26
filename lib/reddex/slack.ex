@@ -34,4 +34,5 @@ defmodule Reddex.Slack do
   end
 
   def handle_cast(_, state), do: {:noreply, state}
+  def handle_info(_, state), do: {:noreply, state}
 end
