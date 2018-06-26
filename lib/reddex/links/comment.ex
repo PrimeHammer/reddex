@@ -4,9 +4,10 @@ defmodule Reddex.Links.Comment do
 
 
   schema "comments" do
-    field :link_id, :integer
     field :text, :string
-    field :user_id, :integer
+
+    belongs_to :user, Reddex.Accounts.User
+    belongs_to :link, Reddex.Links.Link
 
     timestamps()
   end

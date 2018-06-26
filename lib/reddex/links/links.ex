@@ -52,7 +52,7 @@ defmodule Reddex.Links do
   """
   def get_link!(id) do
     Repo.get!(Link, id)
-    |> Repo.preload(:comments)
+    |> Repo.preload(comments: [:user])
   end
 
   @doc """

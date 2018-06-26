@@ -8,6 +8,10 @@ nav {
   background-image: linear-gradient(10deg,#04a6d7 0,#209cee 71%,#3287f5 100%);
 }
 
+.message-header.is-bold {
+  background-image: linear-gradient(10deg,#04a6d7 0,#209cee 71%,#3287f5 100%);
+}
+
 .margin-top {
   margin-top: 1rem;
 }

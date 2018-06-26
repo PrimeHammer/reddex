@@ -25,16 +25,22 @@
 
   </ul>
 
-  <h3>Comments</h3>
-  <ul>
-    <%= for comment <- @link.comments do %>
-    <li><%= comment.text %></li>
-    <% end %>
-  </ul>
-
   <h3>New comment</h3>
-  <%#= render "comment_form.html", Map.put(assigns, :action, link_comment_path(@conn, :create, @link.id)) %>
   <%= render "comment_form.html", assigns %>
+
+  <h3>Comments</h3>
+  <%= for comment <- @link.comments do %>
+  <article class="message is-info">
+    <div class="message-header is-bold">
+      <p><%= comment.user.name %></p>
+    </div>
+    <div class="message-body">
+      <%= comment.text %>
+      <br>
+      <p class="is-small"><%= commented_at(comment.inserted_at) %></p>
+    </div>
+  </article>
+  <% end %>
 
   <span><%= link "Back", to: link_path(@conn, :index) %></span>
 </div>
