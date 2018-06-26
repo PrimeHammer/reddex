@@ -11,7 +11,7 @@ defmodule ReddexWeb.AuthControllerTest do
     test "logs out an user", %{conn: conn} do
       conn = delete(conn, auth_path(conn, :delete))
       assert redirected_to(conn) == "/sign_in"
-      refute Plug.Conn.get_sessision(conn, :current_user)
+      refute Plug.Conn.get_session(conn, :current_user)
     end
   end
 end
