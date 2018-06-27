@@ -22,7 +22,7 @@ defmodule ReddexWeb.CommentController do
         |> redirect(to: link_path(conn, :show, comment_params["link_id"]))
       {:error, %Ecto.Changeset{} = changeset} ->
         conn
-        |> put_flash(:info, "Comment created successfully.")
+        |> put_flash(:error, "Could not create invalid comment")
         |> redirect(to: link_path(conn, :show, comment_params["link_id"]))
     end
   end

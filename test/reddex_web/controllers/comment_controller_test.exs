@@ -32,12 +32,14 @@ defmodule ReddexWeb.CommentControllerTest do
       assert html_response(conn, 200) =~ "some comment about link"
     end
 
-    test "renders errors when data is invalid", %{conn: conn} do
+    test "renders errors when data is invalid", %{conn: conn, user: user} do
       {:ok, link} = Links.create_link(%{url: "http://example.com", tags_input: "test"})
-      conn = post conn, link_comment_path(conn, :create, link.id), comment: @invalid_attrs
+      invalid_create_attrs = %{link_id: link.id, text: nil, user_id: user.id}
+      conn = post conn, link_comment_path(conn, :create, link.id),
+        comment: invalid_create_attrs
       assert redirected_to(conn) == link_path(conn, :show, link.id)
       conn = get conn, link_path(conn, :show, link.id)
-      assert html_response(conn, 200) =~ "Invalid comment"
+      assert html_response(conn, 200) =~ "Could not create invalid comment"
     end
   end
 
