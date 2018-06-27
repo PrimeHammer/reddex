@@ -6,17 +6,12 @@ defmodule ReddexWeb.AuthController do
   plug(Ueberauth)
 
   alias Reddex.Accounts
-  alias Reddex.Accounts.User
-
-  def request(conn, _params) do
-    render(conn, "request.html", callback_url: Helpers.callback_url(conn))
-  end
 
   def delete(conn, _params) do
     conn
     |> put_flash(:info, "You have been logged out!")
-    |> configure_session(drop: true)
-    |> redirect(to: "/")
+    |> clear_session
+    |> redirect(to: "/sign_in")
   end
 
   def callback(%{assigns: %{ueberauth_failure: _fails}} = conn, _params) do
