@@ -21,7 +21,9 @@ defmodule ReddexWeb.CommentController do
         |> put_flash(:info, "Comment created successfully.")
         |> redirect(to: link_path(conn, :show, comment_params["link_id"]))
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        conn
+        |> put_flash(:info, "Comment created successfully.")
+        |> redirect(to: link_path(conn, :show, comment_params["link_id"]))
     end
   end
 

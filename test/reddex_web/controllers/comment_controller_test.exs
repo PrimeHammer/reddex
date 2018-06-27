@@ -2,6 +2,7 @@ defmodule ReddexWeb.CommentControllerTest do
   use ReddexWeb.ConnCase
 
   alias Reddex.Links
+  alias Reddex.Accounts
 
   @update_attrs %{link_id: 43, text: "some updated text", user_id: 43}
   @invalid_attrs %{link_id: nil, text: nil, user_id: nil}
@@ -12,15 +13,15 @@ defmodule ReddexWeb.CommentControllerTest do
   end
 
   setup %{conn: conn} do
-    user = %Reddex.Accounts.User{name: "dhh"}
+    {:ok, user} = Accounts.create_user(%{name: "dhh", email: "dhh@basecamp.com"})
     conn = Plug.Test.init_test_session(conn, current_user: user)
-    {:ok, conn: conn}
+    {:ok, conn: conn, user: user}
   end
 
   describe "create comment" do
-    test "redirects to link show when data is valid", %{conn: conn} do
+    test "redirects to link show when data is valid", %{conn: conn, user: user} do
       {:ok, link} = Links.create_link(%{url: "http://example.com", tags_input: "test"})
-      create_attrs = %{link_id: link.id, text: "some comment about link", user_id: 42}
+      create_attrs = %{link_id: link.id, text: "some comment about link", user_id: user.id}
       conn = post conn, link_comment_path(conn, :create, link.id),
         comment: create_attrs
 
