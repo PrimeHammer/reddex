@@ -22,45 +22,42 @@ defmodule ReddexWeb.CommentControllerTest do
     test "redirects to link show when data is valid", %{conn: conn, user: user} do
       {:ok, link} = Links.create_link(%{url: "http://example.com", tags_input: "test"})
       create_attrs = %{link_id: link.id, text: "some comment about link", user_id: user.id}
-      conn = post conn, link_comment_path(conn, :create, link.id),
-        comment: create_attrs
+      conn = post(conn, link_comment_path(conn, :create, link.id), comment: create_attrs)
 
       assert %{id: id} = redirected_params(conn)
       assert redirected_to(conn) == link_path(conn, :show, link.id)
 
-      conn = get conn, link_path(conn, :show, link.id)
+      conn = get(conn, link_path(conn, :show, link.id))
       assert html_response(conn, 200) =~ "some comment about link"
     end
 
     test "renders errors when data is invalid", %{conn: conn, user: user} do
       {:ok, link} = Links.create_link(%{url: "http://example.com", tags_input: "test"})
       invalid_create_attrs = %{link_id: link.id, text: nil, user_id: user.id}
-      conn = post conn, link_comment_path(conn, :create, link.id),
-        comment: invalid_create_attrs
+      conn = post(conn, link_comment_path(conn, :create, link.id), comment: invalid_create_attrs)
       assert redirected_to(conn) == link_path(conn, :show, link.id)
-      conn = get conn, link_path(conn, :show, link.id)
+      conn = get(conn, link_path(conn, :show, link.id))
       assert html_response(conn, 200) =~ "Could not create invalid comment"
     end
   end
-
 
   describe "update comment" do
     setup [:create_comment]
 
     @tag :skip
-    #test "redirects when data is valid", %{conn: conn, comment: comment} do
+    # test "redirects when data is valid", %{conn: conn, comment: comment} do
     #  conn = put conn, comment_path(conn, :update, comment), comment: @update_attrs
     #  assert redirected_to(conn) == comment_path(conn, :show, comment)
 
     #  conn = get conn, comment_path(conn, :show, comment)
     #  assert html_response(conn, 200) =~ "some updated text"
-    #end
+    # end
 
     @tag :skip
-    #test "renders errors when data is invalid", %{conn: conn, comment: comment} do
+    # test "renders errors when data is invalid", %{conn: conn, comment: comment} do
     #  conn = put conn, comment_path(conn, :update, comment), comment: @invalid_attrs
     #  assert html_response(conn, 200) =~ "Edit Comment"
-    #end
+    # end
   end
 
   defp create_comment(_) do

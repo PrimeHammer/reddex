@@ -2,12 +2,11 @@ defmodule Reddex.Links.Comment do
   use Ecto.Schema
   import Ecto.Changeset
 
-
   schema "comments" do
-    field :text, :string
+    field(:text, :string)
 
-    belongs_to :user, Reddex.Accounts.User
-    belongs_to :link, Reddex.Links.Link
+    belongs_to(:user, Reddex.Accounts.User)
+    belongs_to(:link, Reddex.Links.Link)
 
     timestamps()
   end

@@ -20,6 +20,7 @@ defmodule ReddexWeb.CommentController do
         conn
         |> put_flash(:info, "Comment created successfully.")
         |> redirect(to: link_path(conn, :show, comment_params["link_id"]))
+
       {:error, %Ecto.Changeset{} = changeset} ->
         conn
         |> put_flash(:error, "Could not create invalid comment")
@@ -45,7 +46,8 @@ defmodule ReddexWeb.CommentController do
       {:ok, comment} ->
         conn
         |> put_flash(:info, "Comment updated successfully.")
-        #|> redirect(to: comment_path(conn, :show, comment))
+
+      # |> redirect(to: comment_path(conn, :show, comment))
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", comment: comment, changeset: changeset)
     end
@@ -57,6 +59,7 @@ defmodule ReddexWeb.CommentController do
 
     conn
     |> put_flash(:info, "Comment deleted successfully.")
-    #|> redirect(to: comment_path(conn, :index))
+
+    # |> redirect(to: comment_path(conn, :index))
   end
 end
