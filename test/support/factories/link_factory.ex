@@ -1,4 +1,6 @@
 defmodule Reddex.LinkFactory do
+  @moduledoc false
+
   use ExMachina.Ecto, repo: Reddex.Repo
 
   def link_factory do
