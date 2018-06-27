@@ -7,4 +7,8 @@ defmodule ReddexWeb.LinkView do
     |> Enum.join()
     |> String.slice(0..-3)
   end
+
+  def commented_at(timestamp) do
+    Timex.from_now(timestamp)
+  end
 end

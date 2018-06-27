@@ -21,7 +21,7 @@ defmodule Reddex.Mixfile do
     [
       mod: {Reddex.Application, []},
       extra_applications: [:logger, :runtime_tools, :ueberauth,
-                           :ueberauth_github, :readability]
+                           :ueberauth_github, :readability, :timex]
     ]
   end
 

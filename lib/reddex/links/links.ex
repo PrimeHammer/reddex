@@ -50,7 +50,11 @@ defmodule Reddex.Links do
       ** (Ecto.NoResultsError)
 
   """
-  def get_link!(id), do: Repo.get!(Link, id)
+  def get_link!(id) do
+    link = Repo.get!(Link, id)
+
+    Repo.preload(link, comments: [:user])
+  end
 
   @doc """
   Creates a link.
@@ -87,5 +91,26 @@ defmodule Reddex.Links do
   """
   def change_link(%Link{} = link) do
     Link.changeset(link, %{})
+  end
+
+  alias Reddex.Links.Comment
+
+  def create_comment(attrs \\ %{}) do
+    %Comment{}
+    |> Comment.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking comment changes.
+
+  ## Examples
+
+      iex> change_comment(comment)
+      %Ecto.Changeset{source: %Comment{}}
+
+  """
+  def change_comment(%Comment{} = comment) do
+    Comment.changeset(comment, %{})
   end
 end

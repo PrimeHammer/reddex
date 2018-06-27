@@ -12,6 +12,8 @@ defmodule Reddex.Links.Link do
     field(:url, :string)
     field(:sent_to_slack_at, :date)
 
+    has_many(:comments, Reddex.Links.Comment)
+
     timestamps()
   end
 

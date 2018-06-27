@@ -5,7 +5,6 @@ defmodule Reddex.AccountsTest do
 
   describe "users" do
     @valid_attrs %{email: "sefinko@ph.com", name: "some name"}
-    @invalid_attrs %{email: nil, name: nil}
 
     def user_fixture(attrs \\ %{}) do
       {:ok, user} =
