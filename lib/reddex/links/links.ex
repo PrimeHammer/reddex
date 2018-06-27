@@ -21,6 +21,14 @@ defmodule Reddex.Links do
     Repo.all(Link)
   end
 
+  def list_pending_links do
+    from(
+      l in Link,
+      where: is_nil(l.sent_to_slack_at)
+    )
+    |> Repo.all()
+  end
+
   @doc """
   Gets a single link.
 

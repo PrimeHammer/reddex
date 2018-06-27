@@ -58,9 +58,10 @@ defmodule Reddex.LinksTest do
     end
 
     test "list_pending_links/0 returns link waiting to be reported" do
-      insert(:link) # %{sent_to_slack: false}
-      pending = Links.list_pending_links()
-      assert List.length(pending) == 1
+      insert(:link)
+      insert(:link, %{sent_to_slack_at: Date.utc_today()})
+      [link] = Links.list_pending_links()
+      assert link.sent_to_slack_at == nil
     end
   end
 end
