@@ -73,33 +73,23 @@ defmodule Reddex.LinksTest do
 
   describe "comments" do
     alias Reddex.Links.Comment
-
-    @valid_attrs %{link_id: 42, text: "some text", user_id: 42}
-    @invalid_attrs %{link_id: nil, text: nil, user_id: nil}
-
-    def comment_fixture(attrs \\ %{}) do
-      {:ok, comment} =
-        attrs
-        |> Enum.into(@valid_attrs)
-        |> Links.create_comment()
-
-      comment
-    end
+    alias Reddex.Accounts
 
     test "create_comment/1 with valid data creates a comment" do
-      assert {:ok, %Comment{} = comment} = Links.create_comment(@valid_attrs)
-      assert comment.link_id == 42
+      {:ok, user} = Accounts.create_user(%{name: "messi", email: "messi@arg.com"})
+      {:ok, link} = Links.create_link(%{url: "test", tags_input: "test soccer"})
+      assert {:ok, %Comment{} = comment} = Links.create_comment(%{link_id: link.id, user_id: user.id, text: "some text"})
+      assert comment.link_id == link.id
       assert comment.text == "some text"
-      assert comment.user_id == 42
+      assert comment.user_id == user.id
     end
 
     test "create_comment/1 with invalid data returns error changeset" do
-      assert {:error, %Ecto.Changeset{}} = Links.create_comment(@invalid_attrs)
+      assert {:error, %Ecto.Changeset{}} = Links.create_comment(%{user_id: nil, text: nil, link_id: nil})
     end
 
     test "change_comment/1 returns a comment changeset" do
-      comment = comment_fixture()
-      assert %Ecto.Changeset{} = Links.change_comment(comment)
+      assert %Ecto.Changeset{} = Links.change_comment(%Comment{})
     end
   end
 end
