@@ -75,7 +75,6 @@ defmodule Reddex.LinksTest do
     alias Reddex.Links.Comment
 
     @valid_attrs %{link_id: 42, text: "some text", user_id: 42}
-    @update_attrs %{link_id: 43, text: "some updated text", user_id: 43}
     @invalid_attrs %{link_id: nil, text: nil, user_id: nil}
 
     def comment_fixture(attrs \\ %{}) do
@@ -87,16 +86,6 @@ defmodule Reddex.LinksTest do
       comment
     end
 
-    test "list_comments/0 returns all comments" do
-      comment = comment_fixture()
-      assert Links.list_comments() == [comment]
-    end
-
-    test "get_comment!/1 returns the comment with given id" do
-      comment = comment_fixture()
-      assert Links.get_comment!(comment.id) == comment
-    end
-
     test "create_comment/1 with valid data creates a comment" do
       assert {:ok, %Comment{} = comment} = Links.create_comment(@valid_attrs)
       assert comment.link_id == 42
@@ -106,27 +95,6 @@ defmodule Reddex.LinksTest do
 
     test "create_comment/1 with invalid data returns error changeset" do
       assert {:error, %Ecto.Changeset{}} = Links.create_comment(@invalid_attrs)
-    end
-
-    test "update_comment/2 with valid data updates the comment" do
-      comment = comment_fixture()
-      assert {:ok, comment} = Links.update_comment(comment, @update_attrs)
-      assert %Comment{} = comment
-      assert comment.link_id == 43
-      assert comment.text == "some updated text"
-      assert comment.user_id == 43
-    end
-
-    test "update_comment/2 with invalid data returns error changeset" do
-      comment = comment_fixture()
-      assert {:error, %Ecto.Changeset{}} = Links.update_comment(comment, @invalid_attrs)
-      assert comment == Links.get_comment!(comment.id)
-    end
-
-    test "delete_comment/1 deletes the comment" do
-      comment = comment_fixture()
-      assert {:ok, %Comment{}} = Links.delete_comment(comment)
-      assert_raise Ecto.NoResultsError, fn -> Links.get_comment!(comment.id) end
     end
 
     test "change_comment/1 returns a comment changeset" do
