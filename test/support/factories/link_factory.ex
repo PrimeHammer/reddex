@@ -4,7 +4,7 @@ defmodule Reddex.LinkFactory do
   def link_factory do
     %Reddex.Links.Link{
       description: sequence(:description, &"Description #{&1}"),
-      tags_input: "phoenix, elixir",
+      tags_input: "phoenix, elixir"
     }
   end
 end

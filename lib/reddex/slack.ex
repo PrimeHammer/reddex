@@ -15,6 +15,7 @@ defmodule Reddex.Slack do
     case Reddex.SlackRtm.start_link(token) do
       {:ok, pid} ->
         GenServer.start_link(__MODULE__, %{pid: pid}, name: @name)
+
       {:error, _reason} ->
         GenServer.start_link(__MODULE__, %{}, name: @name)
     end
