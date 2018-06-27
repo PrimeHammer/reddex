@@ -73,3 +73,8 @@ config :reddex, Reddex.Repo,
   database: "",
   ssl: true,
   pool_size: 1
+
+config :reddex, Reddex.Scheduler,
+  jobs: [
+    {"30 19 * * *", {Reddex.Report, :send, []}}
+  ]
