@@ -30,7 +30,7 @@ defmodule Reddex.Report do
   end
 
   defp slack_message(%{id: id, title: title, description: description}) do
-    # TODO: Full URL to Reddex
-    "*#{title}*\n_#{description}_\n/links/#{id}"
+    host_url = System.get_env("HOST_URL")
+    "*#{title}*\n_#{description}_\n#{host_url}/links/#{id}"
   end
 end
