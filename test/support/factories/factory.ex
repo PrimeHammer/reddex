@@ -1,5 +1,5 @@
 # TODO: Rename to ReddexFactory
-defmodule Reddex.LinkFactory do
+defmodule Reddex.Factory do
   @moduledoc false
 
   use ExMachina.Ecto, repo: Reddex.Repo

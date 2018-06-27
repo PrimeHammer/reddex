@@ -3,7 +3,7 @@ defmodule Reddex.LinksTest do
 
   alias Reddex.Links
 
-  import Reddex.LinkFactory
+  import Reddex.Factory
 
   describe "links" do
     alias Reddex.Links.Link

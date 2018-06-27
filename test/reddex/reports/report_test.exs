@@ -3,7 +3,7 @@ defmodule Reddex.ReportTest do
 
   alias Reddex.{Report, ReportItem}
 
-  import Reddex.LinkFactory
+  import Reddex.Factory
 
   describe "generation" do
     test "returns all pending links as ReportItems" do
