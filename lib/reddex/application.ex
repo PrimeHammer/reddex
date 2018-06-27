@@ -15,7 +15,8 @@ defmodule Reddex.Application do
       supervisor(ReddexWeb.Endpoint, []),
       # Start your own worker by calling: Reddex.Worker.start_link(arg1, arg2, arg3)
       # worker(Reddex.Worker, [arg1, arg2, arg3]),
-      worker(Reddex.Slack, [System.get_env("SLACK_RTM_TOKEN")])
+      worker(Reddex.Slack, [System.get_env("SLACK_RTM_TOKEN")]),
+      worker(Reddex.Scheduler, [])
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

@@ -7,7 +7,7 @@ defmodule Reddex.ReportTest do
 
   describe "generation" do
     test "returns all pending links as ReportItems" do
-      link = insert(:link, %{tags: ["javascript"]})
+      insert(:link, %{tags: ["javascript"]})
 
       [%ReportItem{} = item] = Report.generate()
 

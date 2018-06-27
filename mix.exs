@@ -55,6 +55,8 @@ defmodule Reddex.Mixfile do
       {:ueberauth_github, "~> 0.7"},
       {:slack, "~> 0.14.0"},
       {:ex_machina, "~> 2.2", only: :test},
+      {:quantum, "~> 2.2"},
+      {:timex, "~> 3.0"}
     ]
   end
 

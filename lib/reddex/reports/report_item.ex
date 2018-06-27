@@ -1,5 +1,5 @@
 defmodule Reddex.ReportItem do
   @moduledoc false
 
-  defstruct slack_message: nil, slack_channels: []
+  defstruct link_id: nil, slack_message: nil, slack_channels: []
 end
