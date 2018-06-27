@@ -63,5 +63,11 @@ defmodule Reddex.LinksTest do
       [link] = Links.list_pending_links()
       assert link.sent_to_slack_at == nil
     end
+
+    test "mark_as_sent/0 sets sent_to_slack_at to current datetime" do
+      link = insert(:link)
+      Links.mark_as_sent(link.id)
+      assert Links.list_pending_links() == []
+    end
   end
 end

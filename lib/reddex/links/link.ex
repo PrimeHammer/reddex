@@ -24,6 +24,11 @@ defmodule Reddex.Links.Link do
     |> tags_input_to_tags_array()
   end
 
+  def update_changeset(link, attrs) do
+    link
+    |> cast(attrs, [:title, :description, :sent_to_slack_at])
+  end
+
   defp tags_input_to_tags_array(changeset) do
     case changeset do
       %Ecto.Changeset{valid?: true, changes: %{tags_input: tags_input}} ->
