@@ -7,8 +7,8 @@ defmodule ReddexWeb.PageControllerTest do
     {:ok, conn: conn}
   end
 
-  test "GET /", %{conn: conn} do
-    conn = get(conn, "/")
-    assert html_response(conn, 200) =~ "Logged In Content"
+  test "GET /sign_in", %{conn: conn} do
+    conn = get(conn, "/sign_in")
+    assert html_response(conn, 200) =~ "Login with Github"
   end
 end
