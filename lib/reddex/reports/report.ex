@@ -1,4 +1,6 @@
 defmodule Reddex.Report do
+  @moduledoc false
+
   alias Reddex.Links
   alias Reddex.ReportItem
 
@@ -17,8 +19,7 @@ defmodule Reddex.Report do
          slack_message: slack_message,
          slack_channels: slack_channels
        }) do
-    slack_channels
-    |> Enum.each(fn channel ->
+    Enum.each(slack_channels, fn _channel ->
       # TODO: Use channel variable instead of "#reddex"
       Reddex.Slack.send_message(slack_message, "#reddex")
       Reddex.Links.mark_as_sent(link_id)

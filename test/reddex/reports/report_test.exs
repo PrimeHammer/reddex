@@ -1,7 +1,8 @@
 defmodule Reddex.ReportTest do
   use Reddex.DataCase
 
-  alias Reddex.{Report, ReportItem}
+  alias Reddex.Report
+  alias Reddex.ReportItem
 
   import Reddex.Factory
 

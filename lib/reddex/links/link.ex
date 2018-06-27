@@ -25,8 +25,7 @@ defmodule Reddex.Links.Link do
   end
 
   def update_changeset(link, attrs) do
-    link
-    |> cast(attrs, [:title, :description, :sent_to_slack_at])
+    cast(link, attrs, [:title, :description, :sent_to_slack_at])
   end
 
   defp tags_input_to_tags_array(changeset) do
