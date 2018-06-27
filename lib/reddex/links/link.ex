@@ -10,6 +10,7 @@ defmodule Reddex.Links.Link do
     field(:tags_input, :string, virtual: true)
     field(:title, :string)
     field(:url, :string)
+    field(:sent_to_slack_at, :date)
 
     timestamps()
   end
