@@ -11,8 +11,15 @@ defmodule Reddex.ReportTest do
 
       [%ReportItem{} = item] = Report.generate()
 
-      assert item.slack_message =~ "/links/#{link.id}"
       assert item.slack_channels == ["javascript"]
+    end
+
+    test "formats slack message" do
+      link = insert(:link, %{title: "Title", description: "Test"})
+
+      [%ReportItem{} = item] = Report.generate()
+
+      assert item.slack_message == "*Title*\n_Test_\n/links/#{link.id}"
     end
   end
 end
