@@ -25,7 +25,7 @@ defmodule ReddexWeb.Router do
     # Use the default browser stack and authentication
     pipe_through([:browser, ReddexWeb.Plugs.Auth])
 
-    get("/", PageController, :index)
+    get("/", LinkController, :index)
     get("/sign_in", PageController, :sign_in)
     delete("/logout", AuthController, :delete)
     resources("/links", LinkController, only: [:index, :new, :create, :show])
