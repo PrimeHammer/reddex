@@ -1,3 +1,4 @@
+# TODO: Rename to ReddexFactory
 defmodule Reddex.LinkFactory do
   @moduledoc false
 
@@ -5,6 +6,7 @@ defmodule Reddex.LinkFactory do
 
   def link_factory do
     %Reddex.Links.Link{
+      url: sequence(:url, &"URL #{&1}"),
       description: sequence(:description, &"Description #{&1}"),
       tags_input: "phoenix, elixir"
     }
