@@ -3,6 +3,8 @@ defmodule Reddex.LinksTest do
 
   alias Reddex.Links
 
+  import Reddex.Factory
+
   describe "links" do
     alias Reddex.Links.Link
 
@@ -53,6 +55,19 @@ defmodule Reddex.LinksTest do
     test "change_link/1 returns a link changeset" do
       link = link_fixture()
       assert %Ecto.Changeset{} = Links.change_link(link)
+    end
+
+    test "list_pending_links/0 returns link waiting to be reported" do
+      insert(:link)
+      insert(:link, %{sent_to_slack_at: Date.utc_today()})
+      [link] = Links.list_pending_links()
+      assert link.sent_to_slack_at == nil
+    end
+
+    test "mark_as_sent/0 sets sent_to_slack_at to current datetime" do
+      link = insert(:link)
+      Links.mark_as_sent(link.id)
+      assert Links.list_pending_links() == []
     end
   end
 end

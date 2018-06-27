@@ -12,6 +12,13 @@ To start your Phoenix server:
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
+## Environment
+  * Set `HOST_URL` to server's DNS name (without trailing `/`, e.g. `localhost:4000`)
+
+## Use Slack Integration
+
+  * Set `SLACK_RTM_TOKEN` variable (See: [https://my.slack.com/services/new/bot](https://my.slack.com/services/new/bot))
+
 ## Login via Github on localhost
 
   * Ask @erich/@matej for github client id and secret / or use your own

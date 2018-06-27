@@ -10,6 +10,7 @@ defmodule Reddex.Links.Link do
     field(:tags_input, :string, virtual: true)
     field(:title, :string)
     field(:url, :string)
+    field(:sent_to_slack_at, :date)
 
     timestamps()
   end
@@ -21,6 +22,10 @@ defmodule Reddex.Links.Link do
     |> validate_required([:url, :tags_input])
     |> unique_constraint(:url)
     |> tags_input_to_tags_array()
+  end
+
+  def update_changeset(link, attrs) do
+    cast(link, attrs, [:title, :description, :sent_to_slack_at])
   end
 
   defp tags_input_to_tags_array(changeset) do

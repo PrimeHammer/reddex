@@ -21,6 +21,21 @@ defmodule Reddex.Links do
     Repo.all(Link)
   end
 
+  def list_pending_links do
+    Repo.all(
+      from(
+        l in Link,
+        where: is_nil(l.sent_to_slack_at)
+      )
+    )
+  end
+
+  def mark_as_sent(link_id) do
+    Link
+    |> Repo.get(link_id)
+    |> update_link(%{sent_to_slack_at: DateTime.utc_now()})
+  end
+
   @doc """
   Gets a single link.
 
@@ -57,7 +72,7 @@ defmodule Reddex.Links do
 
   def update_link(%Link{} = link, attrs) do
     link
-    |> Link.changeset(attrs)
+    |> Link.update_changeset(attrs)
     |> Repo.update()
   end
 
