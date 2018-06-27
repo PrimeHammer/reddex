@@ -3,11 +3,11 @@ defmodule Reddex.Report do
   alias Reddex.ReportItem
 
   def send do
-    generate()
+    get_report_items()
     |> Enum.each(&send_report_item/1)
   end
 
-  def generate do
+  def get_report_items do
     Links.list_pending_links()
     |> Enum.map(&link_to_report_item/1)
   end
