@@ -1,5 +1,17 @@
 <div class="container content is-fluid margin-top">
   <h2>Listing Links</h2>
+
+  <div class="buttons has-addons">
+    <h4>Tags: &nbsp;</h4>
+    <%= link "All", to: link_path(@conn, :index), class: "button" %>
+    <%= link "#elixir", to: link_path(@conn, :index, tag: "elixir"), class: "button" %>
+    <%= link "#ruby", to: link_path(@conn, :index, tag: "ruby"), class: "button" %>
+    <%= link "#javascript", to: link_path(@conn, :index, tag: "javascript"), class: "button" %>
+    <%= link "#tdd", to: link_path(@conn, :index, tag: "tdd"), class: "button" %>
+    <%= link "#crypto", to: link_path(@conn, :index, tag: "crypto"), class: "button" %>
+    <%= link "#mobile", to: link_path(@conn, :index, tag: "mobile"), class: "button" %>
+  </div>
+
   <span>
     <%= link "New Link", to: link_path(@conn, :new), class: "button is-primary" %>
   </span>

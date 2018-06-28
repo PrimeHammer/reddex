@@ -5,6 +5,11 @@ defmodule ReddexWeb.LinkController do
   alias Reddex.Links.Link
   alias Reddex.Links.Comment
 
+  def index(conn, %{"tag" => tag}) do
+    links = Links.list_links_by_tag(tag)
+    render(conn, "index.html", links: links)
+  end
+
   def index(conn, _params) do
     links = Links.list_links()
     render(conn, "index.html", links: links)

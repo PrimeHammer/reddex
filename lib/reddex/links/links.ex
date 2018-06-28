@@ -21,6 +21,15 @@ defmodule Reddex.Links do
     Repo.all(Link)
   end
 
+  def list_links_by_tag(tag) do
+    Repo.all(
+      from(
+        l in Link,
+        where: ^tag in l.tags
+      )
+    )
+  end
+
   def list_pending_links do
     Repo.all(
       from(
