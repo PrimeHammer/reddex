@@ -26,15 +26,22 @@ defmodule ReddexWeb.AuthController do
 
     case Accounts.find_or_create(auth, allowed_emails) do
       {:ok, user} ->
-        conn
-        |> put_flash(:info, "Successfully authenticated.")
-        |> put_session(:current_user, user)
-        |> redirect(to: "/")
+        log_in(conn, user)
 
       {:error, reason} ->
         conn
         |> put_flash(:error, reason)
         |> redirect(to: "/")
     end
+  end
+
+  defp log_in(conn, user) do
+    redirect_to = get_session(conn, :redirect_to)
+
+    conn
+    |> put_flash(:info, "Successfully authenticated.")
+    |> delete_session(:redirect_to)
+    |> put_session(:current_user, user)
+    |> redirect(to: redirect_to || "/")
   end
 end

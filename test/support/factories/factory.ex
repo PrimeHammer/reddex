@@ -10,4 +10,11 @@ defmodule Reddex.Factory do
       tags_input: "phoenix, elixir"
     }
   end
+
+  def user_factory do
+    %Reddex.Accounts.User{
+      email: sequence(:email, &"user-#{&1}@example.com"),
+      name: sequence(:name, &"User #{&1}")
+    }
+  end
 end
