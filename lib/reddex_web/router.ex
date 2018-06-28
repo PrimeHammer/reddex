@@ -12,7 +12,7 @@ defmodule ReddexWeb.Router do
       PlugSecex,
       overrides: [
         "content-security-policy":
-          "default-src 'self'; script-src 'self' use.fontawesome.com 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' 'unsafe-eval'"
+          "default-src fonts.gstatic.com 'self'; script-src 'self' use.fontawesome.com 'unsafe-inline' 'unsafe-eval'; style-src fonts.googleapis.com 'self' 'unsafe-inline' 'unsafe-eval'"
       ]
     )
   end
