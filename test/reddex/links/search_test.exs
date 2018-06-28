@@ -1,7 +1,6 @@
 defmodule Reddex.Links.SearchTest do
   use Reddex.DataCase
 
-  alias Reddex.Links
   alias Reddex.Links.Search
 
   import Reddex.Factory

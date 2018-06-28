@@ -30,5 +30,14 @@ defmodule ReddexWeb.AuthControllerTest do
       assert redirected_to(conn) == "/links/1"
       refute Plug.Conn.get_session(conn, :redirect_to)
     end
+
+    test "handles authentication failure", %{conn: conn} do
+      conn =
+        conn
+        |> assign(:ueberauth_failure, %{})
+        |> get(auth_path(conn, :callback, "testing"))
+
+      assert redirected_to(conn) == "/"
+    end
   end
 end
