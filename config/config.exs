@@ -23,7 +23,7 @@ config :logger, :console,
 config :ueberauth, Ueberauth,
   providers: [
     github: {Ueberauth.Strategy.Github, []},
-    testing: {Reddex.Ueberauth.Strategy.Testing, []}
+    testing: {Ueberauth.Strategy.Testing, []}
   ]
 
 config :ueberauth, Ueberauth.Strategy.Github.OAuth,

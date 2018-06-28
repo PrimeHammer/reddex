@@ -53,6 +53,7 @@ defmodule Reddex.Mixfile do
       {:mock, "~> 0.3.0", only: :test},
       {:ueberauth, "~> 0.4"},
       {:ueberauth_github, "~> 0.7"},
+      {:ueberauth_testing, "~> 1.0"},
       {:slack, "~> 0.14.0"},
       {:ex_machina, "~> 2.2", only: :test},
       {:quantum, "~> 2.2"},
