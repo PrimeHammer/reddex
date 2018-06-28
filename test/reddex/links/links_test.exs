@@ -69,6 +69,13 @@ defmodule Reddex.LinksTest do
       Links.mark_as_sent(link.id)
       assert Links.list_pending_links() == []
     end
+
+    test "list_links_by_tag/1 returns links with specific tag" do
+      insert(:link, %{tags: ["javascript", "elixir"]})
+      insert(:link)
+      [link] = Links.list_links_by_tag("elixir")
+      assert link.tags == ["javascript", "elixir"]
+    end
   end
 
   describe "comments" do
@@ -78,14 +85,18 @@ defmodule Reddex.LinksTest do
     test "create_comment/1 with valid data creates a comment" do
       {:ok, user} = Accounts.create_user(%{name: "messi", email: "messi@arg.com"})
       {:ok, link} = Links.create_link(%{url: "test", tags_input: "test soccer"})
-      assert {:ok, %Comment{} = comment} = Links.create_comment(%{link_id: link.id, user_id: user.id, text: "some text"})
+
+      assert {:ok, %Comment{} = comment} =
+               Links.create_comment(%{link_id: link.id, user_id: user.id, text: "some text"})
+
       assert comment.link_id == link.id
       assert comment.text == "some text"
       assert comment.user_id == user.id
     end
 
     test "create_comment/1 with invalid data returns error changeset" do
-      assert {:error, %Ecto.Changeset{}} = Links.create_comment(%{user_id: nil, text: nil, link_id: nil})
+      assert {:error, %Ecto.Changeset{}} =
+               Links.create_comment(%{user_id: nil, text: nil, link_id: nil})
     end
 
     test "change_comment/1 returns a comment changeset" do
