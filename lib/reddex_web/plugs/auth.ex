@@ -14,7 +14,10 @@ defmodule ReddexWeb.Plugs.Auth do
   end
 
   defp redirect_to_login(conn) do
-    conn |> Phoenix.Controller.redirect(to: "/sign_in") |> halt()
+    conn
+    |> put_session(:redirect_to, conn.request_path)
+    |> Phoenix.Controller.redirect(to: "/sign_in")
+    |> halt()
   end
 
   defp skip_auth?("/sign_in"), do: true
