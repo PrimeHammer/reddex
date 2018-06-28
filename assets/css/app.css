@@ -1,4 +1,8 @@
 /* This file is for your main application css. */
+body, button, input, select, textarea {
+  font-family: 'Vollkorn', 'Arial', sans-serif;
+}
+
 nav {
   padding-bottom: 1rem;
   padding-top: 1rem;
