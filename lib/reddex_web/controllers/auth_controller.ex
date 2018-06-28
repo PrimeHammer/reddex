@@ -37,6 +37,7 @@ defmodule ReddexWeb.AuthController do
 
   defp log_in(conn, user) do
     redirect_to = get_session(conn, :redirect_to)
+
     conn
     |> put_flash(:info, "Successfully authenticated.")
     |> delete_session(:redirect_to)
