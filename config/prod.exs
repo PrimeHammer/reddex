@@ -76,3 +76,7 @@ config :reddex, Reddex.Scheduler,
   jobs: [
     {"30 19 * * *", {Reddex.Report, :send, []}}
   ]
+
+config :ueberauth, Ueberauth.Strategy.Github.OAuth,
+  client_id: "${GITHUB_CLIENT_ID}",
+  client_secret: "${GITHUB_CLIENT_SECRET}"
