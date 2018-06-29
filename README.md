@@ -26,6 +26,13 @@ Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
 Ready to run in production? Please [check our deployment guides](http://www.phoenixframework.org/docs/deployment).
 
+## Running Migrations on Gigalixir manually
+
+  * `MIX_ENV=prod mix release --env=prod`
+  * `gigalixir databases $APP_NAME` (Copy the database URL, e.g. `postgresql://USER:PASS@tier-1.gigalixir.com:PORT/UUID`)
+  * `MIX_ENV=prod DATABASE_URL="postgresql://USER:PASS@tier-1.gigalixir.com:PORT/UUID" mix ecto.migrate`
+  * `gigalixir restart $APP_NAME`
+
 ## Learn more
 
   * Official website: http://www.phoenixframework.org/
