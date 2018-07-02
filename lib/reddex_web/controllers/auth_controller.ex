@@ -1,3 +1,4 @@
+require Logger
 defmodule ReddexWeb.AuthController do
   @moduledoc """
   Auth controller to handle Uberauth responses
@@ -14,7 +15,12 @@ defmodule ReddexWeb.AuthController do
     |> redirect(to: "/sign_in")
   end
 
-  def callback(%{assigns: %{ueberauth_failure: _fails}} = conn, _params) do
+  def callback(%{assigns: %{ueberauth_failure: failure}} = conn, params) do
+    Logger.info([
+      "Github Oauth2 failure\n",
+      "  params: #{inspect(params)}\n",
+      "  failure: #{inspect(failure)}\n"
+    ])
     conn
     |> put_flash(:error, "Failed to authenticate.")
     |> redirect(to: "/")
