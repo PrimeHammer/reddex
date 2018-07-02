@@ -18,7 +18,7 @@ defmodule ReddexWeb.AuthController do
   def callback(%{assigns: %{ueberauth_failure: failure}} = conn, params) do
     Logger.info([
       "Github Oauth2 failure\n",
-      "  params: #{inspect(params)}\n"
+      "  params: #{inspect(params)}\n",
       "  failure: #{inspect(failure)}\n"
     ])
     conn
