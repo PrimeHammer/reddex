@@ -61,9 +61,7 @@ config :logger, level: :info
 config :reddex, ReddexWeb.Endpoint,
   load_from_system_env: true,
   url: [host: "example.com", port: 80],
-  cache_static_manifest: "priv/static/cache_manifest.json"
-
-config :reddex, ReddexWeb.Endpoint,
+  cache_static_manifest: "priv/static/cache_manifest.json",
   server: true,
   secret_key_base: "${SECRET_KEY_BASE}"
 
@@ -78,3 +76,7 @@ config :reddex, Reddex.Scheduler,
   jobs: [
     {"30 19 * * *", {Reddex.Report, :send, []}}
   ]
+
+config :ueberauth, Ueberauth.Strategy.Github.OAuth,
+  client_id: "${GITHUB_CLIENT_ID}",
+  client_secret: "${GITHUB_CLIENT_SECRET}"
