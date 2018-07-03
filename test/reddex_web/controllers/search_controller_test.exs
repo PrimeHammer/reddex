@@ -12,7 +12,7 @@ defmodule ReddexWeb.SearchControllerTest do
   describe "search within tags for tdd" do
     test "renders link with tdd tag", %{conn: conn} do
       insert(:link, %{tags: ["tdd"], title: "taft"})
-      conn = get(conn, search_path(conn, :show))
+      conn = get(conn, search_path(conn, :search), q: "tdd")
 
       assert html_response(conn, 200) =~ "taft"
     end

@@ -3,7 +3,7 @@ defmodule ReddexWeb.SearchController do
 
   alias Reddex.Links.{Search, Link}
 
-  def show(conn, params) do
+  def search(conn, params) do
     search_results = Search.run(Link, params["q"])
     render(conn, "search.html", search_results: search_results)
   end

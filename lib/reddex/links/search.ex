@@ -12,7 +12,7 @@ defmodule Reddex.Links.Search do
         q in query,
         where:
           ilike(q.title, ^"#{term}%") or ilike(q.description, ^"#{term}%") or
-            ilike(q.url, ^"#{term}%")
+          ilike(q.url, ^"#{term}%") or ^term in q.tags
       )
     )
   end
