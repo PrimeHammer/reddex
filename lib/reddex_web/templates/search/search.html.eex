@@ -1,0 +1,20 @@
+<div class="container content is-fluid margin-top">
+  <h2>Listing results</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Tags</th>
+      </tr>
+        <%= for link <- @search_results do %>
+            <tr>
+              <td><%= link link.title, to: link_path(@conn, :show, link) %></td>
+              <%= # TODO: move this to partial %>
+              <td><%= ReddexWeb.LinkView.readable_tags(link.tags) %></td>
+            </tr>
+        <% end %>
+    </tbody>
+  </table>
+    </thead>
+    <tbody>
+</div>

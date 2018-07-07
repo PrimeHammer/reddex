@@ -34,6 +34,7 @@ defmodule ReddexWeb.Router do
     end
 
     resources("/users", UserController, only: [:index])
+    get("/search", SearchController, :search)
   end
 
   # TODO: move me
