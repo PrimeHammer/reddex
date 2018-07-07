@@ -12,11 +12,11 @@ defmodule Reddex.ReportTest do
 
       [%ReportItem{} = item] = Report.get_report_items()
 
-      assert item.slack_channels == ["javascript"]
+      assert item.slack_channels == ["jsbubble"]
     end
 
     test "formats slack message" do
-      link = insert(:link, %{title: "Title", description: "Test"})
+      link = insert(:link, %{title: "Title", description: "Test", tags: ["test"]})
 
       [%ReportItem{} = item] = Report.get_report_items()
 
