@@ -23,7 +23,7 @@ defmodule Reddex.Report.Mapping do
       {key, values} = element
 
       if Enum.member?(values, String.downcase(tag)) do
-        Atom.to_string(key)
+        "##{Atom.to_string(key)}"
       end
     end)
   end
