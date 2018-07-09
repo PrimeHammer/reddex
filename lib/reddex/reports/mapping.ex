@@ -6,19 +6,19 @@ defmodule Reddex.Report.Mapping do
     mapping = %{
       rubysekai: ["ruby", "ror", "rails"],
       jsbubble: ["js", "javascript"],
-      elixir: ["elixir", "erlang"]
+      elixir: ["elixir", "erlang"],
+      cryptoapocalypse: ["bitcoin", "crypto", "ethereum", "smartcontracts"],
+      cybersecurity: ["exploit", "security"]
     }
 
     tags
-    |> Enum.map(fn tag ->
-      is_tag_in_mapping?(tag, mapping)
-    end)
+    |> Enum.map(&tag_to_channel(&1, mapping))
     |> List.flatten()
     |> Enum.reject(&is_nil/1)
     |> Enum.uniq()
   end
 
-  defp is_tag_in_mapping?(tag, mapping) do
+  defp tag_to_channel(tag, mapping) do
     Enum.map(mapping, fn element ->
       {key, values} = element
 
