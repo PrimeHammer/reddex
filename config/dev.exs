@@ -61,4 +61,5 @@ config :reddex, Reddex.Repo,
   password: "postgres",
   database: "reddex_dev",
   hostname: "localhost",
-  pool_size: 10
+  pool_size: 10,
+  port: 5433
