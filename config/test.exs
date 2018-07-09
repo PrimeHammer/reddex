@@ -20,4 +20,5 @@ config :reddex, Reddex.Repo,
   password: System.get_env("POSTGRES_PASSWORD") || "postgres",
   database: "reddex_test",
   hostname: "localhost",
-  pool: Ecto.Adapters.SQL.Sandbox
+  pool: Ecto.Adapters.SQL.Sandbox,
+  port: 5433
