@@ -20,3 +20,14 @@ import 'phoenix_html';
 
 // import socket from "./socket"
 import './notifications';
+
+import { fromEvent } from 'rxjs';
+import { map, debounceTime, subscribe, distinctUntilChanged } from 'rxjs/operators';
+
+const searchInput = document.getElementById('searchInput');
+
+fromEvent(searchInput, 'input')
+  .pipe(debounceTime(200))
+  .pipe(map(e => e.target.value))
+  .pipe(distinctUntilChanged())
+  .subscribe(v => console.log(`Fetch from server ${v}`));

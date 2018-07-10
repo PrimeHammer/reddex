@@ -14,7 +14,7 @@
     <div class="navbar-start">
       <%= if signed_in?(@conn) do %>
         <%= form_for @conn, search_path(@conn, :search), [method: :get], fn f -> %>
-          <%= text_input f, :q, placeholder: "Search", class: "input is-rounded" %>
+          <%= text_input f, :q, placeholder: "Search", class: "input is-rounded", id: "searchInput" %>
         <% end %>
       <% end %>
       </div>
