@@ -21,4 +21,3 @@ config :reddex, Reddex.Repo,
   database: "reddex_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox,
-  port: 5433

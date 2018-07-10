@@ -62,4 +62,3 @@ config :reddex, Reddex.Repo,
   database: "reddex_dev",
   hostname: "localhost",
   pool_size: 10,
-  port: 5433
